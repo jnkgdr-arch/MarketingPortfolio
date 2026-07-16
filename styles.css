@@ -263,7 +263,7 @@ body {
   border-top: 1px solid var(--border);
 }
 
-.project-description__item + .project-description__item {
+.project-description__item  .project-description__item {
   padding-top: 22px;
   border-top: 1px solid var(--border);
 }
@@ -283,6 +283,61 @@ body {
   color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.6;
+}
+
+.project-tools {
+  display: grid;
+  gap: 24px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.project-tool-section {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.project-tool-section h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.tool-icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 104px;
+  height: 104px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tool-icon-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tool-icon-button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+}
+
+.tool-icon-button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  border-color: var(--accent);
 }
 
 
@@ -309,4 +364,9 @@ body.is-focused { overflow: hidden; }
   .focused-project__panel { padding: 82px 14px 24px; }
   .project-detail { gap: 18px; }
   .pdf-page { border-radius: 12px; }
+  .tool-icon-button {
+    width: 92px;
+    height: 92px;
+    padding: 10px;
+  }
 }
