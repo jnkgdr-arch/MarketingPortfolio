@@ -70,6 +70,31 @@ body::before {
   padding: 72px 24px 32px;
 }
 
+.site-brand,
+.focused-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f8fbff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.site-brand {
+  margin-bottom: 22px;
+}
+
+.focused-brand {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 12;
+}
+
+.site-brand__name {
+  line-height: 1.1;
+}
 .eyebrow,
 .project-card__category,
 .focused-project__category {
