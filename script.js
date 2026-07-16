@@ -189,6 +189,12 @@ let activeRenderToken = 0;
 let activeProjectPath = "";
 let closeTimerId = null;
 
+let currentProject = null;
+let resolutionTimerId = null;
+
+function getOutputScale() {
+  return Math.min(window.devicePixelRatio || 1, 3);
+}
 function renderProjects() {
   const cards = projects.map((project) => {
     const card = document.createElement("button");
@@ -278,14 +284,42 @@ async function renderPdfThumbnail(
 
     const page = await pdf.getPage(1);
 
-    const viewport = page.getViewport({
-      scale: 0.45,
+    const baseViewport = page.getViewport({
+      scale: 1,
     });
+
+    const displayWidth =
+      preview.clientWidth || 260;
+
+    const displayHeight =
+      preview.clientHeight || 210;
+
+    const widthScale =
+      displayWidth / baseViewport.width;
+
+    const heightScale =
+      displayHeight / baseViewport.height;
+
+    /*
+      Use the larger scale so the thumbnail continues
+      to cover the entire preview box.
+    */
+    const cssScale = Math.max(
+      widthScale,
+      heightScale,
+    );
+
+    const viewport = page.getViewport({
+      scale: cssScale,
+    });
+
+    const outputScale = getOutputScale();
 
     const canvas =
       document.createElement("canvas");
 
-    const context = canvas.getContext("2d");
+    const context =
+      canvas.getContext("2d");
 
     if (!context) {
       throw new Error(
@@ -293,17 +327,45 @@ async function renderPdfThumbnail(
       );
     }
 
-    canvas.width = Math.floor(viewport.width);
-    canvas.height = Math.floor(viewport.height);
+    /*
+      Give the canvas a higher internal resolution
+      while preserving its visual size.
+    */
+    canvas.width = Math.ceil(
+      viewport.width * outputScale,
+    );
+
+    canvas.height = Math.ceil(
+      viewport.height * outputScale,
+    );
+
+    canvas.style.width =
+      `${viewport.width}px`;
+
+    canvas.style.height =
+      `${viewport.height}px`;
 
     canvas.setAttribute(
       "aria-hidden",
       "true",
     );
 
+    const transform =
+      outputScale !== 1
+        ? [
+            outputScale,
+            0,
+            0,
+            outputScale,
+            0,
+            0,
+          ]
+        : null;
+
     await page.render({
       canvasContext: context,
       viewport,
+      transform,
     }).promise;
 
     preview.replaceChildren(canvas);
@@ -316,6 +378,7 @@ async function renderPdfThumbnail(
 }
 
 function openProject(project) {
+  currentProject = project;
   if (closeTimerId !== null) {
     window.clearTimeout(closeTimerId);
     closeTimerId = null;
@@ -576,91 +639,7 @@ async function renderPdfPages(
   }
 }
 
-async function renderPdfPage(
-  page,
-  project,
-  pageNumber,
-) {
-  const pageElement =
-    document.createElement("article");
-
-  pageElement.className = "pdf-page";
-
-  pageElement.setAttribute(
-    "aria-label",
-    `${project.name} page ${pageNumber}`,
-  );
-
-  const unscaledViewport =
-    page.getViewport({
-      scale: 1,
-    });
-
-  const availableWidth =
-    pdfPages.clientWidth || 900;
-
-  const scale =
-    availableWidth /
-    unscaledViewport.width;
-
-  const viewport =
-    page.getViewport({ scale });
-
-  const canvas =
-    document.createElement("canvas");
-
-  const context =
-    canvas.getContext("2d");
-
-  if (!context) {
-    throw new Error(
-      "Unable to create a canvas context.",
-    );
-  }
-
-  canvas.width =
-    Math.floor(viewport.width);
-
-  canvas.height =
-    Math.floor(viewport.height);
-
-  const annotationLayer =
-    document.createElement("div");
-
-  annotationLayer.className =
-    "annotationLayer";
-
-  annotationLayer.setAttribute(
-    "aria-label",
-    `${project.name} page ${pageNumber} links`,
-  );
-
-  pageElement.style.aspectRatio =
-    `${viewport.width} / ${viewport.height}`;
-
-  pageElement.append(
-    canvas,
-    annotationLayer,
-  );
-
-  await page.render({
-    canvasContext: context,
-    viewport,
-  }).promise;
-
-  const annotations =
-    await page.getAnnotations({
-      intent: "display",
-    });
-
-  renderAnnotationLinks(
-    annotations,
-    annotationLayer,
-    viewport,
-  );
-
-  return pageElement;
-}
+async function renderPdfPage( 
 
 function renderAnnotationLinks(
   annotations,
@@ -750,6 +729,7 @@ function createErrorMessage(name) {
 }
 
 function closeProject() {
+  currentProject = null;
   activeRenderToken += 1;
   activeProjectPath = "";
 
@@ -799,6 +779,64 @@ document.addEventListener(
     ) {
       closeProject();
     }
+  },
+);
+
+function rerenderForResolutionChange() {
+  /*
+    Recreate homepage thumbnails after browser zoom
+    or a meaningful window-size change.
+  */
+  if (
+    focusedProject.hidden ||
+    !currentProject
+  ) {
+    renderProjects();
+    return;
+  }
+
+  const savedScrollTop =
+    focusedPanel.scrollTop;
+
+  activeRenderToken += 1;
+
+  const renderToken =
+    activeRenderToken;
+
+  activeProjectPath =
+    currentProject.pdfPath;
+
+  pdfPages.replaceChildren(
+    createLoadingMessage(
+      currentProject.name,
+    ),
+  );
+
+  renderPdfPages(
+    currentProject,
+    renderToken,
+  ).then(() => {
+    if (
+      renderToken === activeRenderToken
+    ) {
+      focusedPanel.scrollTop =
+        savedScrollTop;
+    }
+  });
+}
+
+window.addEventListener(
+  "resize",
+  () => {
+    window.clearTimeout(
+      resolutionTimerId,
+    );
+
+    resolutionTimerId =
+      window.setTimeout(
+        rerenderForResolutionChange,
+        250,
+      );
   },
 );
 
