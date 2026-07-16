@@ -15,20 +15,27 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
   and smaller supporting description text in the right-side panel. Add one or
   more `{ heading, text }` entries, or leave `descriptions: []` empty to hide
   the section.
+
+  Edit `toolSections` to add medium icon buttons beneath tool section headings.
+  Each tool section uses `{ heading, imagePath, ariaLabel }`. Leave
+  `toolSections: []` empty to hide the section.
 */
 const projects = [
   {
     name: "About Me",
     pdfPath: "assets/about-me.pdf",
     category: "Introduction",
-    descriptions: [
-      {
-        heading: "Tools used",
-        text: "Codex, GitHub, and Vercel for project website building and coding.",
-      },
+    descriptions: [],
+    toolSections: [
       {
         heading: "Design Tools",
-        text: "Canva and Adobe Photoshop as the design tools.",
+        imagePath: "assets/design-tools.png",
+        ariaLabel: "View design tools",
+      },
+      {
+        heading: "Tools Used",
+        imagePath: "assets/website-builder-tools.png",
+        ariaLabel: "View website builder tools",
       },
     ],
   },
@@ -82,7 +89,7 @@ const projects = [
     category: "Research",
     descriptions: [
       {
-        heading: "Analyzed 500+ ABC Restaurant Survey Responses to Recommend Audience and Dining Strategies",
+        heading: "Analyzed 500 ABC Restaurant Survey Responses to Recommend Audience and Dining Strategies",
         text: "Examined consumer survey data using Excel PivotTables to identify audience segments and recommend food, ambience, and outreach strategies.",
       },
       {
@@ -143,6 +150,7 @@ const focusedCategory = document.querySelector("#focused-project-category");
 const pdfPages = document.querySelector("#pdf-pages");
 const backButton = document.querySelector("#back-button");
 const projectDescription = document.querySelector("#project-description");
+const projectTools = document.querySelector("#project-tools");
 
 const pdfCache = new Map();
 let previousScrollY = 0;
@@ -217,10 +225,11 @@ function openProject(project) {
   focusedTitle.textContent = project.name;
   focusedCategory.textContent = project.category || "Project";
   renderProjectDescriptions(project.descriptions || []);
+  renderProjectTools(project.toolSections || []);
 
   focusedProject.hidden = false;
   document.body.classList.add("is-focused");
-  activeRenderToken += 1;
+  activeRenderToken = 1;
   const renderToken = activeRenderToken;
 
   requestAnimationFrame(() => {
@@ -258,6 +267,36 @@ function renderProjectDescriptions(descriptions) {
   projectDescription.hidden = populatedDescriptions.length === 0;
 }
 
+function renderProjectTools(toolSections) {
+  const populatedToolSections = toolSections.filter(({ heading, imagePath }) => heading && imagePath);
+
+  projectTools.replaceChildren(
+    ...populatedToolSections.map(({ heading, imagePath, ariaLabel }) => {
+      const section = document.createElement("section");
+      section.className = "project-tool-section";
+
+      const headingElement = document.createElement("h3");
+      headingElement.textContent = heading;
+
+      const button = document.createElement("button");
+      button.className = "tool-icon-button";
+      button.type = "button";
+      button.setAttribute("aria-label", ariaLabel || `View ${heading}`);
+
+      const image = document.createElement("img");
+      image.src = imagePath;
+      image.alt = "";
+      image.loading = "lazy";
+
+      button.append(image);
+      section.append(headingElement, button);
+      return section;
+    }),
+  );
+
+  projectTools.hidden = populatedToolSections.length === 0;
+}
+
 
 async function renderPdfPages(project, renderToken) {
   pdfPages.replaceChildren(createLoadingMessage(project.name));
@@ -268,7 +307,7 @@ async function renderPdfPages(project, renderToken) {
 
     pdfPages.replaceChildren();
 
-    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber = 1) {
       if (renderToken !== activeRenderToken) return;
       const page = await pdf.getPage(pageNumber);
       const pageElement = await renderPdfPage(page, project, pageNumber);
@@ -348,7 +387,7 @@ function createErrorMessage(name) {
 }
 
 function closeProject() {
-  activeRenderToken += 1;
+  activeRenderToken = 1;
   focusedProject.classList.remove("is-visible");
   document.body.classList.remove("is-focused");
 
