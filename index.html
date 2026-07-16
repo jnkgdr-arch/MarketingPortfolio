@@ -2,18 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Projects</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Janelle Gardner Portfolio</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css"
+    />
+
     <link rel="stylesheet" href="styles.css" />
+
     <script src="script.js" type="module"></script>
   </head>
+
   <body>
     <header class="site-header">
-      <img class="site-corner-logo" src="assets/jg-logo-w-circle.png" alt="JG logo" />
-      <h1>Janelle Gardner Portfolio</h1>
+      <div class="homepage-brand">
+        <img
+          class="site-corner-logo"
+          src="assets/jg-logo-w-circle.png"
+          alt="JG logo"
+        />
+
+        <h1>Janelle Gardner Portfolio</h1>
+      </div>
+
       <p class="eyebrow">Selected Projects</p>
-      <p class="intro">A showcase of some of my projects I have worked on</p>
+
+      <p class="intro">
+        A showcase of some of my projects I have worked on
+      </p>
     </header>
 
     <main id="main-content">
@@ -32,31 +55,64 @@
       role="dialog"
       hidden
     >
-      <div class="focused-project__panel" tabindex="-1">
-        <div class="focused-brand" aria-label="Janelle Gardner Portfolio">
-  <img
-    class="focused-brand__logo"
-    src="assets/jg-logo-w-circle.png"
-    alt="JG logo"
-  />
+      <div
+        class="focused-project__panel"
+        tabindex="-1"
+      >
+        <div
+          class="focused-brand"
+          aria-label="Janelle Gardner Portfolio"
+        >
+          <img
+            class="focused-brand__logo"
+            src="assets/jg-logo-w-circle.png"
+            alt="JG logo"
+          />
 
-  <span class="focused-brand__name">
-    Janelle Gardner Portfolio
-  </span>
-</div>
+          <span class="focused-brand__name">
+            Janelle Gardner Portfolio
+          </span>
+        </div>
 
-        <button class="back-button" id="back-button" type="button">
+        <button
+          class="back-button"
+          id="back-button"
+          type="button"
+        >
           Back to All Projects
         </button>
 
         <div class="project-detail">
-          <section class="pdf-pages" id="pdf-pages" aria-label="Rendered PDF pages"></section>
+          <section
+            class="pdf-pages"
+            id="pdf-pages"
+            aria-label="Rendered PDF pages"
+          ></section>
 
-          <aside class="project-info" aria-labelledby="focused-project-title">
-            <p class="focused-project__category" id="focused-project-category"></p>
-            <h2 id="focused-project-title">Project title</h2>
-            <div class="project-description" id="project-description" hidden></div>
-            <div class="project-tools" id="project-tools" hidden></div>
+          <aside
+            class="project-info"
+            aria-labelledby="focused-project-title"
+          >
+            <p
+              class="focused-project__category"
+              id="focused-project-category"
+            ></p>
+
+            <h2 id="focused-project-title">
+              Project title
+            </h2>
+
+            <div
+              class="project-description"
+              id="project-description"
+              hidden
+            ></div>
+
+            <div
+              class="project-tools"
+              id="project-tools"
+              hidden
+            ></div>
           </aside>
         </div>
       </div>
