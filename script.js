@@ -159,26 +159,26 @@ const grid = document.querySelector("#portfolio-grid");
 const focusedProject = document.querySelector("#focused-project");
 
 const focusedPanel = focusedProject.querySelector(
-  ".focused-project__panel",
+  ".focused-project__panel"
 );
 
 const focusedTitle = document.querySelector(
-  "#focused-project-title",
+  "#focused-project-title"
 );
 
 const focusedCategory = document.querySelector(
-  "#focused-project-category",
+  "#focused-project-category"
 );
 
 const pdfPages = document.querySelector("#pdf-pages");
 const backButton = document.querySelector("#back-button");
 
 const projectDescription = document.querySelector(
-  "#project-description",
+  "#project-description"
 );
 
 const projectTools = document.querySelector(
-  "#project-tools",
+  "#project-tools"
 );
 
 const pdfCache = new Map();
@@ -188,13 +188,13 @@ let previouslyFocusedElement = null;
 let activeRenderToken = 0;
 let activeProjectPath = "";
 let closeTimerId = null;
-
 let currentProject = null;
 let resolutionTimerId = null;
 
 function getOutputScale() {
   return Math.min(window.devicePixelRatio || 1, 3);
 }
+
 function renderProjects() {
   const cards = projects.map((project) => {
     const card = document.createElement("button");
@@ -204,7 +204,7 @@ function renderProjects() {
 
     card.setAttribute(
       "aria-label",
-      `Open ${project.name} PDF project`,
+      `Open ${project.name} PDF project`
     );
 
     const preview = document.createElement("div");
@@ -212,7 +212,7 @@ function renderProjects() {
     preview.className = "project-card__preview";
 
     preview.append(
-      createPreviewPlaceholder(project.name),
+      createPreviewPlaceholder(project.name)
     );
 
     const body = document.createElement("div");
@@ -275,11 +275,11 @@ async function getPdfDocument(pdfPath) {
 
 async function renderPdfThumbnail(
   project,
-  preview,
+  preview
 ) {
   try {
     const pdf = await getPdfDocument(
-      project.pdfPath,
+      project.pdfPath
     );
 
     const page = await pdf.getPage(1);
@@ -300,13 +300,9 @@ async function renderPdfThumbnail(
     const heightScale =
       displayHeight / baseViewport.height;
 
-    /*
-      Use the larger scale so the thumbnail continues
-      to cover the entire preview box.
-    */
     const cssScale = Math.max(
       widthScale,
-      heightScale,
+      heightScale
     );
 
     const viewport = page.getViewport({
@@ -323,20 +319,16 @@ async function renderPdfThumbnail(
 
     if (!context) {
       throw new Error(
-        "Unable to create a canvas context.",
+        "Unable to create a canvas context."
       );
     }
 
-    /*
-      Give the canvas a higher internal resolution
-      while preserving its visual size.
-    */
     canvas.width = Math.ceil(
-      viewport.width * outputScale,
+      viewport.width * outputScale
     );
 
     canvas.height = Math.ceil(
-      viewport.height * outputScale,
+      viewport.height * outputScale
     );
 
     canvas.style.width =
@@ -347,7 +339,7 @@ async function renderPdfThumbnail(
 
     canvas.setAttribute(
       "aria-hidden",
-      "true",
+      "true"
     );
 
     const transform =
@@ -368,17 +360,20 @@ async function renderPdfThumbnail(
       transform,
     }).promise;
 
-    preview.replaceChildren(canvas);
+    if (preview.isConnected) {
+      preview.replaceChildren(canvas);
+    }
   } catch (error) {
     console.error(
       `Unable to render thumbnail for ${project.name}`,
-      error,
+      error
     );
   }
 }
 
 function openProject(project) {
   currentProject = project;
+
   if (closeTimerId !== null) {
     window.clearTimeout(closeTimerId);
     closeTimerId = null;
@@ -395,32 +390,34 @@ function openProject(project) {
     project.category || "Project";
 
   renderProjectDescriptions(
-    project.descriptions || [],
+    project.descriptions || []
   );
 
   renderProjectTools(
-    project.toolSections || [],
+    project.toolSections || []
   );
 
   activeRenderToken += 1;
 
-  const renderToken = activeRenderToken;
+  const renderToken =
+    activeRenderToken;
 
-  activeProjectPath = project.pdfPath;
+  activeProjectPath =
+    project.pdfPath;
 
   pdfPages.replaceChildren(
-    createLoadingMessage(project.name),
+    createLoadingMessage(project.name)
   );
 
   focusedProject.hidden = false;
 
   document.body.classList.add(
-    "is-focused",
+    "is-focused"
   );
 
   requestAnimationFrame(() => {
     focusedProject.classList.add(
-      "is-visible",
+      "is-visible"
     );
 
     focusedPanel.focus();
@@ -430,11 +427,12 @@ function openProject(project) {
 }
 
 function renderProjectDescriptions(
-  descriptions,
+  descriptions
 ) {
   const populatedDescriptions =
     descriptions.filter(
-      ({ heading, text }) => heading || text,
+      ({ heading, text }) =>
+        heading || text
     );
 
   projectDescription.replaceChildren(
@@ -450,7 +448,8 @@ function renderProjectDescriptions(
           const headingElement =
             document.createElement("h3");
 
-          headingElement.textContent = heading;
+          headingElement.textContent =
+            heading;
 
           item.append(headingElement);
         }
@@ -465,19 +464,21 @@ function renderProjectDescriptions(
         }
 
         return item;
-      },
-    ),
+      }
+    )
   );
 
   projectDescription.hidden =
     populatedDescriptions.length === 0;
 }
 
-function renderProjectTools(toolSections) {
+function renderProjectTools(
+  toolSections
+) {
   const populatedToolSections =
     toolSections.filter(
       ({ heading, imagePath }) =>
-        heading && imagePath,
+        heading && imagePath
     );
 
   projectTools.replaceChildren(
@@ -509,7 +510,8 @@ function renderProjectTools(toolSections) {
 
         button.setAttribute(
           "aria-label",
-          ariaLabel || `View ${heading}`,
+          ariaLabel ||
+            `View ${heading}`
         );
 
         const image =
@@ -523,11 +525,11 @@ function renderProjectTools(toolSections) {
           "error",
           () => {
             console.error(
-              `Unable to load tool image: ${imagePath}`,
+              `Unable to load tool image: ${imagePath}`
             );
 
             button.classList.add(
-              "has-image-error",
+              "has-image-error"
             );
 
             const errorText =
@@ -540,21 +542,21 @@ function renderProjectTools(toolSections) {
               "Image unavailable";
 
             button.replaceChildren(
-              errorText,
+              errorText
             );
-          },
+          }
         );
 
         button.append(image);
 
         section.append(
           headingElement,
-          button,
+          button
         );
 
         return section;
-      },
-    ),
+      }
+    )
   );
 
   projectTools.hidden =
@@ -563,19 +565,20 @@ function renderProjectTools(toolSections) {
 
 async function renderPdfPages(
   project,
-  renderToken,
+  renderToken
 ) {
   try {
     const selectedPdfPath =
       project.pdfPath;
 
     const pdf = await getPdfDocument(
-      selectedPdfPath,
+      selectedPdfPath
     );
 
     if (
       renderToken !== activeRenderToken ||
-      selectedPdfPath !== activeProjectPath
+      selectedPdfPath !==
+        activeProjectPath
     ) {
       return;
     }
@@ -588,8 +591,10 @@ async function renderPdfPages(
       pageNumber += 1
     ) {
       if (
-        renderToken !== activeRenderToken ||
-        selectedPdfPath !== activeProjectPath
+        renderToken !==
+          activeRenderToken ||
+        selectedPdfPath !==
+          activeProjectPath
       ) {
         return;
       }
@@ -598,8 +603,10 @@ async function renderPdfPages(
         await pdf.getPage(pageNumber);
 
       if (
-        renderToken !== activeRenderToken ||
-        selectedPdfPath !== activeProjectPath
+        renderToken !==
+          activeRenderToken ||
+        selectedPdfPath !==
+          activeProjectPath
       ) {
         return;
       }
@@ -608,12 +615,14 @@ async function renderPdfPages(
         await renderPdfPage(
           page,
           project,
-          pageNumber,
+          pageNumber
         );
 
       if (
-        renderToken !== activeRenderToken ||
-        selectedPdfPath !== activeProjectPath
+        renderToken !==
+          activeRenderToken ||
+        selectedPdfPath !==
+          activeProjectPath
       ) {
         return;
       }
@@ -623,28 +632,140 @@ async function renderPdfPages(
   } catch (error) {
     if (
       renderToken !== activeRenderToken ||
-      project.pdfPath !== activeProjectPath
+      project.pdfPath !==
+        activeProjectPath
     ) {
       return;
     }
 
     console.error(
       `Unable to render PDF for ${project.name}`,
-      error,
+      error
     );
 
     pdfPages.replaceChildren(
-      createErrorMessage(project.name),
+      createErrorMessage(project.name)
     );
   }
 }
 
-async function renderPdfPage( 
+async function renderPdfPage(
+  page,
+  project,
+  pageNumber
+) {
+  const pageElement =
+    document.createElement("article");
+
+  pageElement.className = "pdf-page";
+
+  pageElement.setAttribute(
+    "aria-label",
+    `${project.name} page ${pageNumber}`
+  );
+
+  const baseViewport =
+    page.getViewport({
+      scale: 1,
+    });
+
+  const availableWidth =
+    pdfPages.getBoundingClientRect()
+      .width || 900;
+
+  const cssScale =
+    availableWidth /
+    baseViewport.width;
+
+  const viewport =
+    page.getViewport({
+      scale: cssScale,
+    });
+
+  const outputScale =
+    getOutputScale();
+
+  const canvas =
+    document.createElement("canvas");
+
+  const context =
+    canvas.getContext("2d");
+
+  if (!context) {
+    throw new Error(
+      "Unable to create a canvas context."
+    );
+  }
+
+  canvas.width = Math.ceil(
+    viewport.width * outputScale
+  );
+
+  canvas.height = Math.ceil(
+    viewport.height * outputScale
+  );
+
+  canvas.style.width =
+    `${viewport.width}px`;
+
+  canvas.style.height =
+    `${viewport.height}px`;
+
+  const annotationLayer =
+    document.createElement("div");
+
+  annotationLayer.className =
+    "annotationLayer";
+
+  annotationLayer.setAttribute(
+    "aria-label",
+    `${project.name} page ${pageNumber} links`
+  );
+
+  pageElement.style.aspectRatio =
+    `${viewport.width} / ${viewport.height}`;
+
+  pageElement.append(
+    canvas,
+    annotationLayer
+  );
+
+  const transform =
+    outputScale !== 1
+      ? [
+          outputScale,
+          0,
+          0,
+          outputScale,
+          0,
+          0,
+        ]
+      : null;
+
+  await page.render({
+    canvasContext: context,
+    viewport,
+    transform,
+  }).promise;
+
+  const annotations =
+    await page.getAnnotations({
+      intent: "display",
+    });
+
+  renderAnnotationLinks(
+    annotations,
+    annotationLayer,
+    viewport
+  );
+
+  return pageElement;
+}
 
 function renderAnnotationLinks(
   annotations,
   annotationLayer,
-  viewport,
+  viewport
 ) {
   annotations
     .filter(
@@ -653,30 +774,30 @@ function renderAnnotationLinks(
         (
           annotation.url ||
           annotation.unsafeUrl
-        ),
+        )
     )
     .forEach((annotation) => {
       const rect =
         viewport.convertToViewportRectangle(
-          annotation.rect,
+          annotation.rect
         );
 
       const left = Math.min(
         rect[0],
-        rect[2],
+        rect[2]
       );
 
       const top = Math.min(
         rect[1],
-        rect[3],
+        rect[3]
       );
 
       const width = Math.abs(
-        rect[0] - rect[2],
+        rect[0] - rect[2]
       );
 
       const height = Math.abs(
-        rect[1] - rect[3],
+        rect[1] - rect[3]
       );
 
       const link =
@@ -695,10 +816,17 @@ function renderAnnotationLinks(
         annotation.contents ||
         "Open project link in a new tab";
 
-      link.style.left = `${left}px`;
-      link.style.top = `${top}px`;
-      link.style.width = `${width}px`;
-      link.style.height = `${height}px`;
+      link.style.left =
+        `${left}px`;
+
+      link.style.top =
+        `${top}px`;
+
+      link.style.width =
+        `${width}px`;
+
+      link.style.height =
+        `${height}px`;
 
       annotationLayer.append(link);
     });
@@ -730,17 +858,18 @@ function createErrorMessage(name) {
 
 function closeProject() {
   currentProject = null;
+
   activeRenderToken += 1;
   activeProjectPath = "";
 
   pdfPages.replaceChildren();
 
   focusedProject.classList.remove(
-    "is-visible",
+    "is-visible"
   );
 
   document.body.classList.remove(
-    "is-focused",
+    "is-focused"
   );
 
   closeTimerId = window.setTimeout(
@@ -754,20 +883,65 @@ function closeProject() {
 
       if (
         previouslyFocusedElement
-        instanceof HTMLElement
+          instanceof HTMLElement
       ) {
         previouslyFocusedElement.focus();
       }
 
       closeTimerId = null;
     },
-    260,
+    260
   );
+}
+
+function rerenderForResolutionChange() {
+  if (
+    focusedProject.hidden ||
+    !currentProject
+  ) {
+    renderProjects();
+    return;
+  }
+
+  const projectToRender =
+    currentProject;
+
+  const savedScrollTop =
+    focusedPanel.scrollTop;
+
+  activeRenderToken += 1;
+
+  const renderToken =
+    activeRenderToken;
+
+  activeProjectPath =
+    projectToRender.pdfPath;
+
+  pdfPages.replaceChildren(
+    createLoadingMessage(
+      projectToRender.name
+    )
+  );
+
+  renderPdfPages(
+    projectToRender,
+    renderToken
+  ).then(() => {
+    if (
+      renderToken ===
+        activeRenderToken &&
+      currentProject ===
+        projectToRender
+    ) {
+      focusedPanel.scrollTop =
+        savedScrollTop;
+    }
+  });
 }
 
 backButton.addEventListener(
   "click",
-  closeProject,
+  closeProject
 );
 
 document.addEventListener(
@@ -779,65 +953,22 @@ document.addEventListener(
     ) {
       closeProject();
     }
-  },
-);
-
-function rerenderForResolutionChange() {
-  /*
-    Recreate homepage thumbnails after browser zoom
-    or a meaningful window-size change.
-  */
-  if (
-    focusedProject.hidden ||
-    !currentProject
-  ) {
-    renderProjects();
-    return;
   }
-
-  const savedScrollTop =
-    focusedPanel.scrollTop;
-
-  activeRenderToken += 1;
-
-  const renderToken =
-    activeRenderToken;
-
-  activeProjectPath =
-    currentProject.pdfPath;
-
-  pdfPages.replaceChildren(
-    createLoadingMessage(
-      currentProject.name,
-    ),
-  );
-
-  renderPdfPages(
-    currentProject,
-    renderToken,
-  ).then(() => {
-    if (
-      renderToken === activeRenderToken
-    ) {
-      focusedPanel.scrollTop =
-        savedScrollTop;
-    }
-  });
-}
+);
 
 window.addEventListener(
   "resize",
   () => {
     window.clearTimeout(
-      resolutionTimerId,
+      resolutionTimerId
     );
 
     resolutionTimerId =
       window.setTimeout(
         rerenderForResolutionChange,
-        250,
+        250
       );
-  },
+  }
 );
 
 renderProjects();
