@@ -132,29 +132,35 @@ const projects = [
     descriptions: [],
   },
   {
-    name: "Experience & Contact",
-    pdfPath: "assets/experience-and-contact.pdf",
-    category: "Contact",
-    descriptions: [
-      {
-        heading: "Core Skills",
-        text:
-          "Digital Marketing, Content Creation, Project Management, Competitive Analysis, Campaign Support.",
-      },
-      {
-        heading: "Technical Skills",
-        text:
-          "Canva, Adobe Photoshop, Microsoft Office Suite, Google Analytics 4, HootSuite.",
-      },
-      {
-        heading: "Soft Skills",
-        text:
-          "Communication, Collaboration, Attention to Detail, Problem Solving, Adaptability.",
-      },
-    ],
-  },
-];
-
+   {
+  name: "Experience & Contact",
+  pdfPath: "assets/experience-and-contact.pdf",
+  category: "Contact",
+  descriptions: [
+    {
+      heading: "Core Skills",
+      text:
+        "Digital Marketing, Content Creation, Project Management, Competitive Analysis, Campaign Support.",
+    },
+    {
+      heading: "Technical Skills",
+      text:
+        "Canva, Adobe Photoshop, Microsoft Office Suite, Google Analytics 4, HootSuite.",
+    },
+    {
+      heading: "Soft Skills",
+      text:
+        "Communication, Collaboration, Attention to Detail, Problem Solving, Adaptability.",
+    },
+    {
+      heading: "Degrees & Certificates",
+      link:
+        "https://drive.google.com/drive/folders/1JLaXqjosYUGntsv1EYa1kr3qqxCpnmxN?usp=sharing",
+      linkLabel:
+        "View degrees and certificates",
+    },
+  ],
+},
 const grid = document.querySelector("#portfolio-grid");
 const focusedProject = document.querySelector("#focused-project");
 
