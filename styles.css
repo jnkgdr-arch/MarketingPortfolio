@@ -457,8 +457,6 @@ body.is-focused { overflow: hidden; }
 
   .portfolio-grid { grid-template-columns: 1fr; }
   .project-card { min-height: 330px; }
-  .back-button { left: 16px; right: 16px; top: 16px; }
-  .focused-project__panel { padding: 82px 14px 24px; }
   .project-detail { gap: 18px; }
   .pdf-page { border-radius: 12px; }
   .project-tools {
@@ -505,7 +503,7 @@ body.is-focused { overflow: hidden; }
 
 @media (max-width: 620px) {
   .focused-brand {
-    top: 22px;
+    top: 16px;
     left: 16px;
     gap: 8px;
   }
@@ -517,5 +515,15 @@ body.is-focused { overflow: hidden; }
 
   .focused-brand__name {
     font-size: 0.82rem;
+  }
+
+  .back-button {
+    top: 68px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .focused-project__panel {
+    padding: 132px 14px 24px;
   }
 }
