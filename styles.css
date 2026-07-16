@@ -70,31 +70,15 @@ body::before {
   padding: 72px 24px 32px;
 }
 
-.site-brand,
-.focused-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #f8fbff;
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
-.site-brand {
+.site-corner-logo {
+  display: block;
+  width: 42px;
+  height: 42px;
   margin-bottom: 22px;
+  object-fit: contain;
+  clip-path: circle(41.2% at 50% 51%);
 }
 
-.focused-brand {
-  position: fixed;
-  top: 24px;
-  left: 24px;
-  z-index: 12;
-}
-
-.site-brand__name {
-  line-height: 1.1;
-}
 .eyebrow,
 .project-card__category,
 .focused-project__category {
@@ -457,6 +441,12 @@ body.is-focused { overflow: hidden; }
 
 @media (max-width: 620px) {
   .site-header { padding-top: 52px; }
+  .site-corner-logo {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 18px;
+  }
+
   body::before,
   .focused-project::before {
     top: 96px;
