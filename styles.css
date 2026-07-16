@@ -26,6 +26,17 @@ body {
   line-height: 1.5;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(246, 243, 238, 0.94), rgba(246, 243, 238, 0.94)),
+    url("assets/jg-logo-w-circle.png") center / min(72vw, 760px) auto no-repeat;
+}
+
 .site-header {
   max-width: 1440px;
   margin: 0 auto;
