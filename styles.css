@@ -23,7 +23,6 @@
       #061a3f 48%,
       #0b3b7c 100%
     );
-  --watermark-logo: url("assets/jg-logo-w-circle.png");
 }
 
 * { box-sizing: border-box; }
@@ -42,8 +41,7 @@ body {
   line-height: 1.5;
 }
 
-body::before,
-.focused-project::before {
+body::before {
   content: "";
   position: fixed;
   top: 42px;
@@ -53,14 +51,15 @@ body::before,
   aspect-ratio: 1;
   pointer-events: none;
   background:
-    var(--watermark-logo)
+    url("assets/jg-logo-w-circle.png")
     center / contain
     no-repeat;
   clip-path: circle(41.2% at 50% 51%);
   opacity: 0.18;
 }
 
-body > * {
+.site-header,
+#main-content {
   position: relative;
   z-index: 1;
 }
@@ -216,6 +215,23 @@ body > * {
 .focused-project.is-visible {
   opacity: 1;
   transform: scale(1);
+}
+
+.focused-project::before {
+  content: "";
+  position: fixed;
+  top: 42px;
+  right: clamp(-180px, -8vw, -64px);
+  z-index: 0;
+  width: min(58vw, 680px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  background:
+    url("assets/jg-logo-w-circle.png")
+    center / contain
+    no-repeat;
+  clip-path: circle(41.2% at 50% 51%);
+  opacity: 0.18;
 }
 
 .focused-project__panel {
@@ -441,17 +457,6 @@ body.is-focused { overflow: hidden; }
 
 @media (max-width: 620px) {
   .site-header { padding-top: 52px; }
-  .site-brand,
-  .focused-brand {
-    gap: 8px;
-    font-size: 0.84rem;
-  }
-
-  .focused-brand {
-    left: 16px;
-    top: 22px;
-  }
-
   body::before,
   .focused-project::before {
     top: 96px;
