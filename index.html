@@ -22,30 +22,51 @@
 
   <body>
     <header class="site-header">
-      <div class="homepage-brand">
-        <img
-          class="site-corner-logo"
-          src="assets/jg-logo-w-circle.png"
-          alt="JG logo"
-        />
+      <nav class="topbar" aria-label="Primary navigation">
+        <a class="homepage-brand" href="#top" aria-label="Janelle Gardner, home">
+          <img class="site-corner-logo" src="assets/jg-logo-w-circle.png" alt="" />
+          <span>Janelle Gardner</span>
+        </a>
+        <div class="topbar__meta">
+          <span>Marketing portfolio</span>
+          <a href="#portfolio-grid">Explore work <span aria-hidden="true">↓</span></a>
+        </div>
+      </nav>
 
-        <h1>Janelle Gardner Portfolio</h1>
+      <div class="hero" id="top">
+        <div class="hero__content">
+          <p class="eyebrow">Strategy · Analytics · Design</p>
+          <h1>Ideas built to<br /><em>make an impact.</em></h1>
+          <p class="intro">
+            A curated presentation of marketing strategy, research, analytics, and design work by Janelle Gardner.
+          </p>
+          <a class="hero__cta" href="#portfolio-grid">
+            View selected work <span aria-hidden="true">↘</span>
+          </a>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <span class="hero__number">01</span>
+          <p>Selected<br />portfolio<br />2026</p>
+        </div>
       </div>
-
-      <p class="eyebrow">Selected Projects</p>
-
-      <p class="intro">
-        A showcase of selected projects, each featuring a link to its corresponding Vercel site.
-      </p>
     </header>
 
     <main id="main-content">
-      <section
-        class="portfolio-grid"
-        id="portfolio-grid"
-        aria-label="Portfolio project grid"
-      ></section>
+      <section class="work-section" aria-labelledby="work-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2 id="work-heading">The project deck</h2>
+          <p>Choose a story to open the full presentation.</p>
+        </div>
+        <div class="portfolio-grid" id="portfolio-grid" aria-label="Portfolio project grid"></div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <p>Let’s make the next idea matter.</p>
+      <a href="mailto:janellegardner525@gmail.com">Start a conversation <span aria-hidden="true">↗</span></a>
+      <span>© 2026 Janelle Gardner</span>
+    </footer>
 
     <section
       class="focused-project"

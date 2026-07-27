@@ -203,7 +203,7 @@ function getOutputScale() {
 }
 
 function renderProjects() {
-  const cards = projects.map((project) => {
+  const cards = projects.map((project, index) => {
     const card = document.createElement("button");
 
     card.type = "button";
@@ -227,11 +227,10 @@ function renderProjects() {
     body.className = "project-card__body";
 
     body.innerHTML = `
-      <p class="project-card__category">
-        ${project.category || "Project"}
-      </p>
-
+      <span class="project-card__number">${String(index + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}</span>
+      <p class="project-card__category">${project.category || "Project"}</p>
       <h2>${project.name}</h2>
+      <span class="project-card__link">Open presentation <span aria-hidden="true">↗</span></span>
     `;
 
     card.append(preview, body);
