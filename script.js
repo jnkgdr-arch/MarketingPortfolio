@@ -126,12 +126,6 @@ const projects = [
     descriptions: [],
   },
   {
-    name: "Administrative Work & Inventory",
-    pdfPath: "assets/administrative-work-and-inventory.pdf",
-    category: "Operations",
-    descriptions: [],
-  },
-  {
     name: "Experience & Contact",
     pdfPath: "assets/experience-and-contact.pdf",
     category: "Contact",
