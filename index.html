@@ -28,31 +28,37 @@
           <span>Janelle Gardner</span>
         </a>
         <div class="topbar__meta">
-          <span>Marketing portfolio</span>
-          <a href="#portfolio-grid">Explore work <span aria-hidden="true">↓</span></a>
+          <span>Professional Portfolio</span>
+          <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#administrative-operations">Administrative &amp; Operations</a>
+            <a href="#video">Video</a>
+            <a href="#contact">Contact</a>
+          </div>
         </div>
       </nav>
 
       <div class="hero" id="top">
         <div class="hero__content">
-          <p class="eyebrow">Strategy · Analytics · Design</p>
+          <p class="eyebrow">Strategy · Analytics · Operations · Creative</p>
           <h1>Ideas built to<br /><em>make an impact.</em></h1>
           <p class="intro">
-            A curated presentation of marketing strategy, research, analytics, and design work by Janelle Gardner.
+            A curated collection of strategy, research, analytics, operations, design, and creative work by Janelle Gardner.
           </p>
           <a class="hero__cta" href="#portfolio-grid">
             View selected work <span aria-hidden="true">↘</span>
           </a>
         </div>
         <div class="hero__visual" aria-hidden="true">
-          <span class="hero__number">01</span>
-          <p>Selected<br />portfolio<br />2026</p>
+          <span class="hero__number">JG / 01</span>
+          <div class="hero__monogram">JG</div>
+          <p>Perspective.<br />Precision.<br />Impact.</p>
         </div>
       </div>
     </header>
 
     <main id="main-content">
-      <section class="work-section" aria-labelledby="work-heading">
+      <section class="work-section reveal" id="work" aria-labelledby="work-heading">
         <div class="section-heading">
           <p class="eyebrow">Selected work</p>
           <h2 id="work-heading">The project deck</h2>
@@ -60,9 +66,18 @@
         </div>
         <div class="portfolio-grid" id="portfolio-grid" aria-label="Portfolio project grid"></div>
       </section>
+
+      <section class="video-section reveal" id="video" aria-labelledby="video-heading">
+        <div class="section-heading section-heading--light">
+          <p class="eyebrow">Motion &amp; Video</p>
+          <h2 id="video-heading">Motion &amp; Video</h2>
+          <p>Selected short-form creative work</p>
+        </div>
+        <div class="video-grid" id="video-grid" aria-live="polite"></div>
+      </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer reveal" id="contact">
       <p>Let’s make the next idea matter.</p>
       <a href="mailto:j.kgardner@outlook.com">Start a conversation <span aria-hidden="true">↗</span></a>
       <span>© 2026 Janelle Gardner</span>
@@ -109,6 +124,8 @@
             id="pdf-pages"
             aria-label="Rendered PDF pages"
           ></section>
+
+          <section class="admin-gallery" id="admin-gallery" aria-labelledby="admin-gallery-title" hidden></section>
 
           <aside
             class="project-info"
