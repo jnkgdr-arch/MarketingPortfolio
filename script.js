@@ -1100,12 +1100,29 @@ function renderAdminGallery() {
 }
 
 const videos = [
-  // Add { title: "", description: "", url: "" } entries when video details are available.
+  {
+    title: "Jungle Bag — Sustainable Fashion Concept",
+    description: "A nature-inspired fashion concept blending sustainable materials with an organic visual aesthetic. Designed in Canva with opening animation created in CapCut.",
+    url: "https://drive.google.com/file/d/1O-HaNkbEj0GRf9MDsPDyAQXWvN2MecpD/view?usp=sharing",
+    tools: ["Canva", "CapCut"],
+  },
+  {
+    title: "Azure Utility Purse — Sustainable Fashion Concept",
+    description: "A fashion-forward utility purse combining sustainable material, a snakeskin-inspired finish, and expanded storage for style-conscious users. Designed in Canva with video animation created in CapCut.",
+    url: "https://drive.google.com/file/d/1wivwIvqlKHSBUwMm9qkOwoeMTCpUnRQd/view?usp=sharing",
+    tools: ["Canva", "CapCut"],
+  },
+  {
+    title: "Overjoyed — Social Content Design",
+    description: "A playful visual concept created to capture the fun and energy of making content for social media. Designed in Canva and animated in CapCut.",
+    url: "https://drive.google.com/file/d/1NYjQexju3ZZaT8-EH9OvuNSNRkjlyEFL/view?usp=sharing",
+    tools: ["Canva", "CapCut"],
+  },
 ];
 function renderVideoGallery() {
   const heading = document.createElement("div");
   heading.className = "video-gallery__intro";
-  heading.innerHTML = `<p class="eyebrow">Creative Work</p><h3 id="video-gallery-title">Motion & Video</h3><p>Individual video projects will appear here as they are added.</p>`;
+  heading.innerHTML = `<p class="eyebrow">Creative Work</p><h3 id="video-gallery-title">Motion & Video</h3><p>Selected short-form motion and social concepts.</p>`;
   if (!videos.length) {
     const empty = document.createElement("p");
     empty.className = "video-gallery__empty";
@@ -1115,7 +1132,7 @@ function renderVideoGallery() {
   }
   const list = document.createElement("div");
   list.className = "video-project-list";
-  videos.forEach(({ title, description, url }) => {
+  videos.forEach(({ title, description, url, tools = [] }) => {
     if (!title || !url) return;
     const item = document.createElement("article");
     item.className = "video-project-item";
@@ -1127,6 +1144,16 @@ function renderVideoGallery() {
       text.textContent = description;
       item.append(text);
     }
+    if (tools.length) {
+      const tagList = document.createElement("ul");
+      tagList.className = "video-tool-tags";
+      tools.forEach((tool) => {
+        const tag = document.createElement("li");
+        tag.textContent = tool;
+        tagList.append(tag);
+      });
+      item.append(tagList);
+    }
     const link = document.createElement("a");
     link.href = url;
     link.target = "_blank";
@@ -1135,7 +1162,10 @@ function renderVideoGallery() {
     item.append(link);
     list.append(item);
   });
-  videoGallery.replaceChildren(heading, list);
+  const audioNote = document.createElement("p");
+  audioNote.className = "video-audio-note";
+  audioNote.textContent = "Audio and sound effects sourced from Canva’s free media library.";
+  videoGallery.replaceChildren(heading, list, audioNote);
 }
 
 function initializeReveal(){
