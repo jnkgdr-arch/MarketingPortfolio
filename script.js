@@ -388,6 +388,16 @@ function initializeReveal() {
     document.documentElement.classList.remove("reveal-ready");
     targets.forEach(item => item.classList.add("is-revealed"));
   }
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-revealed");
+      observer.unobserve(entry.target);
+    }
+  }), { threshold: .08 });
+  targets.forEach((item, index) => {
+    if (item.classList.contains("project-card") || item.classList.contains("reveal-card")) item.style.transitionDelay = `${Math.min(index % 5, 4) * 45}ms`;
+    observer.observe(item);
+  });
 }
 
 backButton.addEventListener("click", closeProject);
