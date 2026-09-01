@@ -215,7 +215,8 @@ button { font: inherit; }
 .video-audio-note { margin: 0; color: #b9cada; font-size: .72rem; font-style: italic; text-align: right; }
 body.is-focused { overflow: hidden; }
 
-.reveal, .project-card, .reveal-card { opacity: 0; transform: translateY(20px); transition: opacity 650ms ease, transform 650ms ease; }
+.reveal, .project-card, .reveal-card { opacity: 1; transform: none; transition: opacity 650ms ease, transform 650ms ease; }
+.reveal-ready .reveal:not(.is-revealed), .reveal-ready .project-card:not(.is-revealed), .reveal-ready .reveal-card:not(.is-revealed) { opacity: 0; transform: translateY(20px); }
 .reveal.is-revealed, .project-card.is-revealed, .reveal-card.is-revealed { opacity: 1; transform: none; }
 .project-card.is-revealed:hover { transform: translateY(-7px); }
 
