@@ -137,35 +137,6 @@ const projects = [
       },
     ],
   },
-  {
-    name: "Experience & Contact",
-    pdfPath: "assets/experience-and-contact.pdf",
-    category: "Contact",
-    descriptions: [
-      {
-        heading: "Core Skills",
-        text:
-          "Digital Marketing, Content Creation, Project Management, Competitive Analysis, Campaign Support.",
-      },
-      {
-        heading: "Technical Skills",
-        text:
-          "Canva, Adobe Photoshop, Microsoft Office Suite, Google Analytics 4, HootSuite.",
-      },
-      {
-        heading: "Soft Skills",
-        text:
-          "Communication, Collaboration, Attention to Detail, Problem Solving, Adaptability.",
-      },
-      {
-        heading: "Degrees & Certificates",
-        link:
-          "https://drive.google.com/drive/folders/1JLaXqjosYUGntsv1EYa1kr3qqxCpnmxN?usp=sharing",
-        linkLabel:
-          "View degrees and certificates in Google Drive",
-      },
-    ],
-  },
 ];
 
 const grid = document.querySelector("#portfolio-grid");
@@ -1118,10 +1089,10 @@ function renderVideos(){
   videoGrid.replaceChildren(...videos.map(v=>{const card=document.createElement("article");card.className="video-card";card.innerHTML=`<video controls preload="metadata" playsinline ${v.poster?`poster="${v.poster}"`:""}><source src="${v.videoPath}" type="video/mp4">Your browser does not support HTML5 video.</video><div class="video-card__body"><p class="eyebrow">${v.category}</p><h3>${v.title}</h3>${v.description?`<p>${v.description}</p>`:""}</div>`;return card;}));
 }
 function initializeReveal(){
-  const targets=document.querySelectorAll(".reveal, .project-card");
+  const targets=document.querySelectorAll(".reveal, .project-card, .reveal-card");
   if(matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver" in window)){targets.forEach(x=>x.classList.add("is-revealed"));return}
   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-revealed");observer.unobserve(entry.target)}}),{threshold:.08});
-  targets.forEach((target,index)=>{if(target.classList.contains("project-card"))target.style.transitionDelay=`${Math.min(index%5,4)*45}ms`;observer.observe(target)});
+  targets.forEach((target,index)=>{if(target.classList.contains("project-card") || target.classList.contains("reveal-card"))target.style.transitionDelay=`${Math.min(index%5,4)*45}ms`;observer.observe(target)});
 }
 
 renderProjects();
