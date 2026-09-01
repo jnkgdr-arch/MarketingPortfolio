@@ -64,20 +64,9 @@
     <main id="main-content">
       <section class="work-section reveal" id="work" aria-labelledby="work-heading">
         <div class="section-heading">
-          <p class="eyebrow">Selected work</p>
           <h2 id="work-heading">The project deck</h2>
-          <p>Choose a story to open the full presentation.</p>
         </div>
         <div class="portfolio-grid" id="portfolio-grid" aria-label="Portfolio project grid"></div>
-      </section>
-
-      <section class="video-section reveal" id="video" aria-labelledby="video-heading">
-        <div class="section-heading section-heading--light">
-          <p class="eyebrow">Motion &amp; Video</p>
-          <h2 id="video-heading">Motion &amp; Video</h2>
-          <p>Selected short-form creative work</p>
-        </div>
-        <div class="video-grid" id="video-grid" aria-live="polite"></div>
       </section>
 
       <section class="experience-section reveal" id="experience" aria-labelledby="experience-heading">
@@ -87,31 +76,34 @@
           <p>A focused view of professional experience, education, and continued development.</p>
         </div>
 
-        <div class="experience-layout">
-          <section class="credential-block" aria-labelledby="professional-heading">
-            <div class="subsection-heading"><span>01</span><h3 id="professional-heading">Professional Experience</h3></div>
-            <div class="timeline">
+        <div class="experience-accordion" data-accordion>
+          <section class="accordion-item">
+            <h3><button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="professional-panel" id="professional-trigger"><span><small>01</small>Professional Experience</span><i aria-hidden="true"></i></button></h3>
+            <div class="accordion-panel" id="professional-panel" role="region" aria-labelledby="professional-trigger" hidden><div class="accordion-panel__inner"><div class="timeline">
               <article class="timeline-card reveal-card">
                 <p class="timeline-card__date">Jun 2023 – Present</p>
                 <h4>Marketing Associate / Social Media Management</h4>
                 <p>ReNVision, LLC</p>
+                <ul class="capability-tags"><li>Social Media</li><li>Content Coordination</li><li>Marketing</li></ul>
               </article>
               <article class="timeline-card reveal-card">
                 <p class="timeline-card__date">Sep 2020 – Jun 2025</p>
                 <h4>General Merchandise Supervisor</h4>
                 <p>Barnes &amp; Noble College Booksellers — Howard University</p>
+                <ul class="capability-tags"><li>Operations</li><li>Team Support</li><li>Inventory</li></ul>
               </article>
               <article class="timeline-card reveal-card">
                 <p class="timeline-card__date">Jan 2020 – Mar 2020</p>
                 <h4>Bookseller</h4>
                 <p>Barnes &amp; Noble College Booksellers — Georgetown University</p>
+                <ul class="capability-tags"><li>Customer Service</li><li>Retail Support</li></ul>
               </article>
-            </div>
+            </div></div></div>
           </section>
 
-          <section class="credential-block" aria-labelledby="education-heading">
-            <div class="subsection-heading"><span>02</span><h3 id="education-heading">Education</h3></div>
-            <div class="education-grid">
+          <section class="accordion-item">
+            <h3><button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="education-panel" id="education-trigger"><span><small>02</small>Education</span><i aria-hidden="true"></i></button></h3>
+            <div class="accordion-panel" id="education-panel" role="region" aria-labelledby="education-trigger" hidden><div class="accordion-panel__inner"><div class="education-grid">
               <article class="education-card education-card--featured reveal-card">
                 <p class="credential-type">Bachelor's degree</p>
                 <h4>Bachelor of Science in Marketing</h4>
@@ -120,28 +112,34 @@
               </article>
               <article class="education-card reveal-card"><p class="credential-type">Certificate</p><h4>Digital Marketing Certificate</h4><p>University of Maryland Global Campus (UMGC)</p></article>
               <article class="education-card reveal-card"><p class="credential-type">Certificate</p><h4>Project Management Certificate</h4><p>University of Maryland Global Campus (UMGC)</p></article>
-            </div>
+            </div></div></div>
           </section>
 
-          <section class="credential-block" aria-labelledby="development-heading">
-            <div class="subsection-heading"><span>03</span><h3 id="development-heading">Relevant Certificates / Professional Development</h3></div>
-            <div class="development-list">
+          <section class="accordion-item">
+            <h3><button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="certificates-panel" id="certificates-trigger"><span><small>03</small>Relevant Certificates</span><i aria-hidden="true"></i></button></h3>
+            <div class="accordion-panel" id="certificates-panel" role="region" aria-labelledby="certificates-trigger" hidden><div class="accordion-panel__inner"><div class="development-list">
               <article class="development-card reveal-card"><h4>Omnichannel Marketing Job Simulation</h4><time datetime="2025-09">Sep 2025</time></article>
               <article class="development-card reveal-card"><h4>Siemens Mobility Project Manager Job Simulation</h4><time datetime="2025-12">Dec 2025</time></article>
               <article class="development-card reveal-card"><h4>BCG Data for Decision Makers Job Simulation</h4><time datetime="2026-01">Jan 2026</time></article>
-            </div>
+            </div></div></div>
+          </section>
+
+          <section class="accordion-item" id="contact">
+            <h3><button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="contact-panel" id="contact-trigger"><span><small>04</small>Contact</span><i aria-hidden="true"></i></button></h3>
+            <div class="accordion-panel" id="contact-panel" role="region" aria-labelledby="contact-trigger" hidden><div class="accordion-panel__inner contact-panel-content">
+              <div class="contact-intro"><p class="eyebrow">Contact</p><h4>Start a conversation</h4><p>Interested in connecting about strategy, operations, analytics, or creative work?</p></div>
+              <nav class="contact-links" aria-label="Contact links">
+                <a href="mailto:j.kgardner@outlook.com"><span>Email</span><strong>j.kgardner@outlook.com</strong><i aria-hidden="true">↗</i></a>
+                <a href="https://www.linkedin.com/in/jgardnerdesign" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><strong>jgardnerdesign</strong><i aria-hidden="true">↗</i></a>
+                <a href="https://www.instagram.com/jkgcollection_1" target="_blank" rel="noopener noreferrer"><span>Instagram</span><strong>@JKGCOLLECTION_1</strong><i aria-hidden="true">↗</i></a>
+              </nav>
+            </div></div>
           </section>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer reveal" id="contact">
-      <div class="contact-intro"><p class="eyebrow">Contact</p><h2>Start a conversation</h2><p>Interested in connecting about strategy, operations, analytics, or creative work?</p></div>
-      <nav class="contact-links" aria-label="Contact links">
-        <a href="mailto:j.kgardner@outlook.com"><span>Email</span><strong>j.kgardner@outlook.com</strong><i aria-hidden="true">↗</i></a>
-        <a href="https://www.linkedin.com/in/jgardnerdesign" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><strong>jgardnerdesign</strong><i aria-hidden="true">↗</i></a>
-        <a href="https://www.instagram.com/jkgcollection_1" target="_blank" rel="noopener noreferrer"><span>Instagram</span><strong>@JKGCOLLECTION_1</strong><i aria-hidden="true">↗</i></a>
-      </nav>
+    <footer class="site-footer">
       <span class="copyright">© 2026 Janelle Gardner</span>
     </footer>
 
@@ -188,6 +186,7 @@
           ></section>
 
           <section class="admin-gallery" id="admin-gallery" aria-labelledby="admin-gallery-title" hidden></section>
+          <section class="video-gallery" id="video-gallery" aria-labelledby="video-gallery-title" hidden></section>
 
           <aside
             class="project-info"

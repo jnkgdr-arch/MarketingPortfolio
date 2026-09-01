@@ -137,6 +137,14 @@ const projects = [
       },
     ],
   },
+  {
+    name: "Motion & Video",
+    category: "Creative Work",
+    type: "video",
+    descriptions: [
+      { heading: "Selected video projects", text: "A focused index of short-form creative work." },
+    ],
+  },
 ];
 
 const grid = document.querySelector("#portfolio-grid");
@@ -157,7 +165,7 @@ const focusedCategory = document.querySelector(
 const pdfPages = document.querySelector("#pdf-pages");
 const backButton = document.querySelector("#back-button");
 const adminGallery = document.querySelector("#admin-gallery");
-const videoGrid = document.querySelector("#video-grid");
+const videoGallery = document.querySelector("#video-gallery");
 
 const projectDescription = document.querySelector(
   "#project-description"
@@ -188,10 +196,11 @@ function renderProjects() {
     card.type = "button";
     card.className = "project-card";
     if (project.type === "admin") card.id = "administrative-operations";
+    if (project.type === "video") card.id = "video";
 
     card.setAttribute(
       "aria-label",
-      project.type === "admin" ? `Open ${project.name} gallery` : `Open ${project.name} PDF project`
+      project.type ? `Open ${project.name} gallery` : `Open ${project.name} PDF project`
     );
 
     const preview = document.createElement("div");
@@ -210,7 +219,7 @@ function renderProjects() {
       <span class="project-card__number">${String(index + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}</span>
       <p class="project-card__category">${project.category || "Project"}</p>
       <h2>${project.name}</h2>
-      <span class="project-card__link">${project.type === "admin" ? "Explore gallery" : "Open presentation"} <span aria-hidden="true">↗</span></span>
+      <span class="project-card__link">${project.type ? "Explore gallery" : "Open presentation"} <span aria-hidden="true">↗</span></span>
     `;
 
     card.append(preview, body);
@@ -223,6 +232,10 @@ function renderProjects() {
       preview.firstElementChild?.classList.add("project-card__placeholder--admin");
       preview.firstElementChild?.setAttribute("aria-hidden", "true");
       preview.firstElementChild.innerHTML = "<span>OPERATIONS<br><small>Planning · Records · Communication</small></span>";
+    } else if (project.type === "video") {
+      preview.firstElementChild?.classList.add("project-card__placeholder--video");
+      preview.firstElementChild?.setAttribute("aria-hidden", "true");
+      preview.firstElementChild.innerHTML = "<span>MOTION<br><small>Video · Creative</small></span>";
     } else {
       renderPdfThumbnail(project, preview);
     }
@@ -393,16 +406,17 @@ function openProject(project) {
 
   const renderToken = activeRenderToken;
 
-  activeProjectPath = project.pdfPath || "admin-gallery";
+  activeProjectPath = project.pdfPath || `${project.type}-gallery`;
 
   const isAdmin = project.type === "admin";
-  pdfPages.hidden = isAdmin;
+  const isVideo = project.type === "video";
+  const isCustomGallery = isAdmin || isVideo;
+  pdfPages.hidden = isCustomGallery;
   adminGallery.hidden = !isAdmin;
-  if (isAdmin) {
-    renderAdminGallery();
-  } else {
-    pdfPages.replaceChildren(createLoadingMessage(project.name));
-  }
+  videoGallery.hidden = !isVideo;
+  if (isAdmin) renderAdminGallery();
+  if (isVideo) renderVideoGallery();
+  if (!isCustomGallery) pdfPages.replaceChildren(createLoadingMessage(project.name));
 
   focusedProject.hidden = false;
 
@@ -418,7 +432,7 @@ function openProject(project) {
     focusedPanel.focus();
   });
 
-  if (project.type !== "admin") {
+  if (!project.type) {
     renderPdfPages(project, renderToken);
   }
 }
@@ -894,7 +908,9 @@ function closeProject() {
 
   pdfPages.replaceChildren();
   adminGallery.replaceChildren();
+  videoGallery.replaceChildren();
   adminGallery.hidden = true;
+  videoGallery.hidden = true;
   pdfPages.hidden = false;
 
   focusedProject.classList.remove(
@@ -938,7 +954,7 @@ function rerenderForResolutionChange() {
 
   const projectToRender = currentProject;
 
-  if (projectToRender.type === "admin") {
+  if (projectToRender.type) {
     return;
   }
 
@@ -1083,11 +1099,45 @@ function renderAdminGallery() {
   adminGallery.replaceChildren(intro,...groups);
 }
 
-const videos = [];
-function renderVideos(){
-  if(!videos.length){videoGrid.innerHTML=`<div class="video-empty"><span class="video-empty__icon" aria-hidden="true">▶</span><div><h3>Video collection coming soon</h3><p>This gallery is ready for selected MP4 work. New entries can include a title, category, video path, poster, and description without changing the layout.</p></div></div>`;return;}
-  videoGrid.replaceChildren(...videos.map(v=>{const card=document.createElement("article");card.className="video-card";card.innerHTML=`<video controls preload="metadata" playsinline ${v.poster?`poster="${v.poster}"`:""}><source src="${v.videoPath}" type="video/mp4">Your browser does not support HTML5 video.</video><div class="video-card__body"><p class="eyebrow">${v.category}</p><h3>${v.title}</h3>${v.description?`<p>${v.description}</p>`:""}</div>`;return card;}));
+const videos = [
+  // Add { title: "", description: "", url: "" } entries when video details are available.
+];
+function renderVideoGallery() {
+  const heading = document.createElement("div");
+  heading.className = "video-gallery__intro";
+  heading.innerHTML = `<p class="eyebrow">Creative Work</p><h3 id="video-gallery-title">Motion & Video</h3><p>Individual video projects will appear here as they are added.</p>`;
+  if (!videos.length) {
+    const empty = document.createElement("p");
+    empty.className = "video-gallery__empty";
+    empty.textContent = "Video project details are coming soon.";
+    videoGallery.replaceChildren(heading, empty);
+    return;
+  }
+  const list = document.createElement("div");
+  list.className = "video-project-list";
+  videos.forEach(({ title, description, url }) => {
+    if (!title || !url) return;
+    const item = document.createElement("article");
+    item.className = "video-project-item";
+    const itemTitle = document.createElement("h4");
+    itemTitle.textContent = title;
+    item.append(itemTitle);
+    if (description) {
+      const text = document.createElement("p");
+      text.textContent = description;
+      item.append(text);
+    }
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Watch Video ↗";
+    item.append(link);
+    list.append(item);
+  });
+  videoGallery.replaceChildren(heading, list);
 }
+
 function initializeReveal(){
   const targets=document.querySelectorAll(".reveal, .project-card, .reveal-card");
   if(matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver" in window)){targets.forEach(x=>x.classList.add("is-revealed"));return}
@@ -1095,6 +1145,36 @@ function initializeReveal(){
   targets.forEach((target,index)=>{if(target.classList.contains("project-card") || target.classList.contains("reveal-card"))target.style.transitionDelay=`${Math.min(index%5,4)*45}ms`;observer.observe(target)});
 }
 
+function initializeAccordion() {
+  const accordion = document.querySelector("[data-accordion]");
+  if (!accordion) return;
+  const triggers = [...accordion.querySelectorAll(".accordion-trigger")];
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const shouldOpen = trigger.getAttribute("aria-expanded") !== "true";
+      triggers.forEach((item) => {
+        const panel = document.getElementById(item.getAttribute("aria-controls"));
+        const wasOpen = item.getAttribute("aria-expanded") === "true";
+        item.setAttribute("aria-expanded", "false");
+        panel.classList.remove("is-open");
+        if (wasOpen) {
+          window.setTimeout(() => {
+            if (item.getAttribute("aria-expanded") === "false") panel.hidden = true;
+          }, 380);
+        } else {
+          panel.hidden = true;
+        }
+      });
+      if (shouldOpen) {
+        const panel = document.getElementById(trigger.getAttribute("aria-controls"));
+        trigger.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+        requestAnimationFrame(() => panel.classList.add("is-open"));
+      }
+    });
+  });
+}
+
 renderProjects();
-renderVideos();
+initializeAccordion();
 initializeReveal();
