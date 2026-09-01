@@ -10,11 +10,6 @@
 
     <title>Janelle Gardner Portfolio</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css"
-    />
-
     <link rel="stylesheet" href="styles.css" />
 
     <script src="script.js" type="module"></script>
@@ -84,19 +79,19 @@
                 <p class="timeline-card__date">Jun 2023 – Present</p>
                 <h4>Marketing Associate / Social Media Management</h4>
                 <p>ReNVision, LLC</p>
-                <ul class="capability-tags"><li>Social Media</li><li>Content Coordination</li><li>Marketing</li></ul>
+                <ul class="capability-tags"><li>Social Media</li><li>Audience Research</li><li>Content</li></ul>
               </article>
               <article class="timeline-card reveal-card">
                 <p class="timeline-card__date">Sep 2020 – Jun 2025</p>
                 <h4>General Merchandise Supervisor</h4>
                 <p>Barnes &amp; Noble College Booksellers — Howard University</p>
-                <ul class="capability-tags"><li>Operations</li><li>Team Support</li><li>Inventory</li></ul>
+                <ul class="capability-tags"><li>Operations</li><li>Customer Experience</li><li>Team Leadership</li></ul>
               </article>
               <article class="timeline-card reveal-card">
                 <p class="timeline-card__date">Jan 2020 – Mar 2020</p>
                 <h4>Bookseller</h4>
                 <p>Barnes &amp; Noble College Booksellers — Georgetown University</p>
-                <ul class="capability-tags"><li>Customer Service</li><li>Retail Support</li></ul>
+                <ul class="capability-tags"><li>Customer Service</li><li>Transactions</li><li>Retail Operations</li></ul>
               </article>
             </div></div></div>
           </section>
@@ -179,19 +174,8 @@
         </button>
 
         <div class="project-detail">
-          <section
-            class="pdf-pages"
-            id="pdf-pages"
-            aria-label="Rendered PDF pages"
-          ></section>
-
-          <section class="admin-gallery" id="admin-gallery" aria-labelledby="admin-gallery-title" hidden></section>
-          <section class="video-gallery" id="video-gallery" aria-labelledby="video-gallery-title" hidden></section>
-
-          <aside
-            class="project-info"
-            aria-labelledby="focused-project-title"
-          >
+          <section class="native-project" id="native-project" aria-live="polite"></section>
+          <aside class="project-info" aria-labelledby="focused-project-title">
             <p
               class="focused-project__category"
               id="focused-project-category"
@@ -201,17 +185,7 @@
               Project title
             </h2>
 
-            <div
-              class="project-description"
-              id="project-description"
-              hidden
-            ></div>
-
-            <div
-              class="project-tools"
-              id="project-tools"
-              hidden
-            ></div>
+            <p class="project-info__summary" id="focused-project-summary"></p>
           </aside>
         </div>
       </div>
