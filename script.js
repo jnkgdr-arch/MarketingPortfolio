@@ -129,6 +129,7 @@ const projects = [
     name: "Administrative & Operations",
     category: "Work Samples",
     type: "admin",
+    sourceReference: "assets/administrative-operations-work-samples.pdf",
     descriptions: [
       {
         heading: "Organized work, clearly communicated",
@@ -238,7 +239,7 @@ function renderProjects() {
       <span class="project-card__number">${String(index + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}</span>
       <p class="project-card__category">${project.category || "Project"}</p>
       <h2>${project.name}</h2>
-      <span class="project-card__link">Open presentation <span aria-hidden="true">↗</span></span>
+      <span class="project-card__link">${project.type === "admin" ? "Explore gallery" : "Open presentation"} <span aria-hidden="true">↗</span></span>
     `;
 
     card.append(preview, body);
@@ -1047,30 +1048,65 @@ const adminSamples = [
 ];
 
 function calendarView() {
-  const cells = ["Time","Mon 14","Tue 15","Wed 16","Thu 17","Fri 18","9 AM","Campaign brief","Editorial review","<div class='event'>Team sync</div>","Asset review","Reporting","11 AM","<div class='event'>Draft due</div>","Scheduling","Analytics check","<div class='event'>Approval</div>","Publish","2 PM","Community","<div class='event'>Copy review</div>","Planning","Follow-up","Weekly recap"];
-  return `<div class="calendar">${cells.map(cell => `<div>${cell}</div>`).join("")}</div>`;
+  const schedule = [
+    ["01/24", "Inspiring quotes", "Facebook", "Story of overcoming adversity", "8 AM"],
+    ["01/25", "Spreading love", "Pinterest", "Community giving video", "10:20 AM"],
+    ["01/26", "Love & recognition", "X", "Follower thank-you and tutor recognition", "6 AM"],
+    ["01/27", "Healthy minds", "LinkedIn", "Testimonial, case study, and e-book", "10 AM"],
+    ["01/28", "Love through dance", "Instagram / YouTube", "Short-form brand video", "10 AM / 12 PM"],
+  ];
+  return `<div class="planner-head"><div><small>WEEKLY SOCIAL MEDIA CONTENT CALENDAR</small><h5>January 24–28</h5></div><div class="planner-actions"><span>Track metrics</span><span>Check messages</span></div></div><table class="data-table calendar-table"><thead><tr><th>Date</th><th>Theme</th><th>Platform</th><th>Content plan</th><th>Time</th></tr></thead><tbody>${schedule.map(row => `<tr>${row.map((cell, i) => `<td>${i === 2 ? `<span class="platform-pill">${cell}</span>` : cell}</td>`).join("")}</tr>`).join("")}</tbody></table><div class="insight-strip"><strong>Creative perspective</strong><span>Video views are strongest on Instagram</span><span>Testimonials increase engagement</span></div>`;
 }
-function tableView(inventory = false) {
-  const rows = inventory ? [["Office supplies","124","120","-4","Review"],["Shipping materials","86","86","0","Verified"],["Equipment accessories","42","40","-2","Recount"]] : [["Weekly report","Operations","Sep 3","In progress"],["Vendor follow-up","Admin","Sep 4","Scheduled"],["Records audit","Support","Sep 6","Complete"]];
-  return `<table class="data-table"><thead><tr>${(inventory?["Category","Recorded","Counted","Variance","Action"]:["Task","Area","Due","Status"]).map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((x,i)=>`<td>${i===r.length-1?`<span class="status">${x}</span>`:x}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+function trackerView() {
+  const rows = [
+    ["Client proposal draft", "In Progress", "Yes", "Awaiting feedback from team"],
+    ["Social media assets", "Complete", "No", "Delivered to client"],
+    ["Website banner update", "Pending", "Yes", "Updated copy needed"],
+    ["Invoice #4521", "Complete", "No", "Payment received"],
+    ["Brand kit revision", "In Progress", "Yes", "Colors need approval"],
+    ["Email campaign setup", "Not Started", "Yes", "Waiting on content brief"],
+    ["Quarterly report", "Pending", "Yes", "Data collection in progress"],
+  ];
+  return `<div class="metric-row"><div class="metric"><small>Tracked items</small><strong>07</strong></div><div class="metric"><small>Complete</small><strong>02</strong></div><div class="metric"><small>Follow-up</small><strong>05</strong></div></div><table class="data-table"><thead><tr><th>Task / Order</th><th>Status</th><th>Follow-up</th><th>Notes</th></tr></thead><tbody>${rows.map(row => `<tr><td>${row[0]}</td><td><span class="status status--${row[1].toLowerCase().replaceAll(" ", "-")}">${row[1]}</span></td><td>${row[2]}</td><td>${row[3]}</td></tr>`).join("")}</tbody></table>`;
+}
+function inventoryView() {
+  const rows = [
+    ["012345678901", "University Hoodie · Navy L", 12, 15],
+    ["012345678902", "University T-Shirt · White M", 8, 8],
+    ["012345678903", "University Lanyard · Blue", 24, 30],
+    ["012345678904", "University Mug · Gold Logo", 6, 4],
+    ["012345678905", "University Notebook · 5×7", 19, 20],
+    ["012345678906", "University Cap · Gray", 3, 7],
+  ];
+  return `<div class="metric-row"><div class="metric"><small>SKUs reviewed</small><strong>06</strong></div><div class="metric"><small>On-hand units</small><strong>72</strong></div><div class="metric"><small>Variance</small><strong>−12</strong></div></div><div class="inventory-layout"><div class="bar-chart" aria-label="On-hand versus system quantities">${rows.map(row => `<div class="bar-group"><span>${row[1].split(" · ")[1] || row[1]}</span><i style="--on:${row[2]};--system:${row[3]}"></i></div>`).join("")}</div><div class="chart-legend"><span>On hand</span><span>System</span></div></div><table class="data-table"><thead><tr><th>UPC</th><th>Item</th><th>On hand</th><th>System</th><th>Variance</th></tr></thead><tbody>${rows.map(row => `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td><td class="${row[2] !== row[3] ? "variance" : ""}">${row[2] - row[3]}</td></tr>`).join("")}</tbody></table><div class="callout">Discrepancies are highlighted for recount and supporting-document review.</div>`;
 }
 function emailView(customer = false) {
-  return `<div class="mail"><aside class="mail-sidebar"><strong>Mail</strong><div class="mail-folder active">Inbox</div><div class="mail-folder">Sent</div><div class="mail-folder">Drafts</div><div class="mail-folder">Archive</div></aside><div class="mail-message"><small>${customer?"To: Customer":"To: Operations Team"} · 10:24 AM</small><h5>${customer?"Follow-up on your recent request":"Weekly coordination update"}</h5><p>Hello,</p><p>${customer?"Thank you for reaching out. I’m following up to confirm that your request has been documented and routed for review. I’ll share the next update by the agreed date.":"Here is a concise update on this week’s priorities. The schedule has been reviewed, open items have assigned owners, and the tracker reflects current due dates."}</p><p>Please let me know if any additional context would be helpful.</p><p>Best,<br>Janelle</p></div></div>`;
+  const subject = customer ? "Resolution for damaged merchandise" : "Weekly coordination update";
+  const body = customer ? `<p>Thank you for bringing the damaged item to our attention. I sincerely apologize for the inconvenience.</p><p>A full refund has been initiated, and a replacement item will be sent with a complimentary accessory. We appreciate your patience and the opportunity to make this right.</p>` : `<p>The weekly schedule and status tracker have been reviewed. Open items now have assigned owners, follow-up indicators, and current due dates.</p><p>Please review the items marked for follow-up before our next check-in.</p>`;
+  return `<div class="mail"><aside class="mail-sidebar"><button type="button">＋ New message</button><strong>Mail</strong><div class="mail-folder active">Inbox <b>4</b></div><div class="mail-folder">Sent</div><div class="mail-folder">Drafts</div><div class="mail-folder">Archive</div></aside><div class="mail-message"><div class="mail-toolbar">Reply · Forward · Archive</div><small>${customer ? "To: Customer" : "To: Operations Team"} · 10:24 AM</small><h5>${subject}</h5><p>Hello,</p>${body}<p>Please let me know if I can provide any additional assistance.</p><p>Warm regards,<br><strong>Janelle Gardner</strong><br>${customer ? "Customer Support Supervisor" : "Administrative & Operations Support"}</p></div></div>`;
 }
-function documentView(type) {
-  const titles={note:"SUPERVISOR INSIGHT NOTE",po:"PURCHASE ORDER",invoice:"INVOICE DOCUMENTATION"};
-  if(type==="note") return `<div class="doc"><div class="doc-head"><h5>${titles[type]}</h5><span>Internal</span></div><p><strong>Observation</strong></p><p>Recurring handoff questions indicate an opportunity to clarify ownership at the start of each request.</p><p><strong>Suggested next step</strong></p><p>Add an owner and next-action field to the shared status tracker, then review unresolved items during the weekly check-in.</p><div class="callout">Recreated sample. Names, organizations, and identifying details are generalized.</div></div>`;
-  return `<div class="doc"><div class="doc-head"><h5>${titles[type]}</h5><span>${type==="po"?"PO-REDACTED":"INV-REDACTED"}</span></div><p><strong>${type==="po"?"Vendor":"Bill to"}:</strong> <span class="redacted">Generalized Organization</span></p>${tableView(false)}<p style="text-align:right"><strong>Total: $—.—</strong></p><div class="callout">Demonstration document only. All identifying and financial information has been redacted or generalized.</div></div>`;
+function purchaseOrderView() {
+  const rows = [["University short-sleeve tee",5,"$24.98","$124.90"],["Navy writing pens",15,"$19.98","$299.70"],["Black sweatpants",15,"$9.98","$149.70"],["University logo mug",10,"$14.98","$149.80"],["ID holder",7,"$19.98","$139.86"],["Khaki lanyard",12,"$9.98","$119.76"]];
+  return `<div class="doc"><div class="doc-head"><div><small>EXAMPLE ONLY</small><h5>PURCHASE ORDER</h5></div><div><strong>PO-4489</strong><br><small>May 12, 2024</small></div></div><div class="doc-parties"><p><small>PREPARED FOR</small><br><span class="redacted">Generalized university department</span></p><p><small>PREPARED BY</small><br>Administrative Support</p></div><table class="data-table"><thead><tr><th>Description</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead><tbody>${rows.map(row=>`<tr>${row.map(x=>`<td>${x}</td>`).join("")}</tr>`).join("")}</tbody></table><div class="doc-total"><span>Department discount</span><strong>−$239.32</strong><span>Grand total</span><strong>$957.30</strong></div><div class="callout">Recreated from the source sample. Contact, department, funding, and identifying details are generalized.</div></div>`;
+}
+function invoiceView() {
+  return `<div class="doc"><div class="doc-head"><div><small>EXAMPLE ONLY</small><h5>INVOICE</h5></div><div><strong>INV-4521</strong><br><small>January 1, 2023</small></div></div><div class="doc-parties"><p><small>INVOICE FROM</small><br><span class="redacted">Generalized campus bookstore</span></p><p><small>INVOICE TO</small><br><span class="redacted">Customer details redacted</span></p></div><table class="data-table"><thead><tr><th>Description</th><th>Qty</th><th>Price</th><th>Subtotal</th></tr></thead><tbody><tr><td>University desk clock · gold lens</td><td>1</td><td>$95.00</td><td>$95.00</td></tr><tr><td>Second-business-day shipping</td><td>1</td><td>$24.99</td><td>$24.99</td></tr></tbody></table><div class="doc-total"><span>Total due</span><strong>$119.99</strong><span>Payment</span><strong>Card ending ••••</strong></div><div class="callout">Recreated from the source sample. Customer, account, contact, and organization details are redacted or generalized.</div></div>`;
+}
+function noteView() {
+  return `<div class="doc memo"><div class="doc-head"><div><small>INTERNAL · EXAMPLE ONLY</small><h5>SUPERVISOR INSIGHT NOTE</h5></div><span>Operations</span></div><h6>Observation</h6><p>Inventory reconciliation shows recurring variances in high-movement accessories and apparel.</p><h6>Recommended action</h6><p>Prioritize recounts for flagged SKUs, attach supporting documentation, and record resolution notes in the shared tracker.</p><h6>Follow-up</h6><p>Review outstanding discrepancies during the next weekly operations check-in.</p><div class="callout">This recreated sample uses generalized operational context and contains no confidential employer information.</div></div>`;
 }
 function sampleView(type) {
-  if(type==="calendar") return calendarView();
-  if(type==="tracker") return `<div class="metric-row"><div class="metric"><small>Open</small><strong>06</strong></div><div class="metric"><small>On track</small><strong>92%</strong></div><div class="metric"><small>Due soon</small><strong>02</strong></div></div>${tableView()}`;
-  if(type==="inventory") return `<div class="metric-row"><div class="metric"><small>Units counted</small><strong>248</strong></div><div class="metric"><small>Variance</small><strong>2.4%</strong></div><div class="metric"><small>Flagged</small><strong>02</strong></div></div><div class="chart"><span style="height:76%"></span><span style="height:52%"></span><span style="height:90%"></span><span style="height:64%"></span><span style="height:82%"></span></div>${tableView(true)}<div class="callout">Two categories require recount or supporting documentation.</div>`;
-  if(type==="internal"||type==="email") return emailView(type==="email");
-  return documentView(type);
+  if (type === "calendar") return calendarView();
+  if (type === "tracker") return trackerView();
+  if (type === "inventory") return inventoryView();
+  if (type === "internal" || type === "email") return emailView(type === "email");
+  if (type === "po") return purchaseOrderView();
+  if (type === "invoice") return invoiceView();
+  return noteView();
 }
+
 function renderAdminGallery() {
-  const intro=document.createElement("div"); intro.className="admin-intro"; intro.innerHTML=`<h3 id="admin-gallery-title">Administrative & Operations Work Samples</h3><p>These recreated and redacted samples are based on prior responsibilities. Names, organizations, account details, and other identifying information have been generalized for confidentiality.</p>`;
+  const intro=document.createElement("div"); intro.className="admin-intro"; intro.innerHTML=`<h3 id="admin-gallery-title">Administrative & Operations Work Samples</h3><p>Recreated from the Administrative & Operations Work Samples portfolio as interactive web experiences. These samples reflect prior responsibilities; names, organizations, customer details, account information, and other identifiers are redacted or generalized for confidentiality.</p>`;
   const themes=[...new Set(adminSamples.map(s=>s.theme))];
   const groups=themes.map(theme=>{const group=document.createElement("section");group.className="sample-group";group.innerHTML=`<h3 class="sample-group__heading">${theme}</h3>`;adminSamples.filter(s=>s.theme===theme).forEach(sample=>{const d=document.createElement("details");d.className="sample-card";d.innerHTML=`<summary><div><h4>${sample.title}</h4><p class="sample-meta">${sample.theme} · ${sample.purpose}</p></div></summary><div class="sample-content"><ul class="tags">${sample.tags.map(t=>`<li>${t}</li>`).join("")}</ul><div class="app-window"><div class="window-bar"><i class="window-dot"></i><i class="window-dot"></i><i class="window-dot"></i><span class="window-title">${sample.title} · Recreated sample</span></div><div class="app-body">${sampleView(sample.view)}</div></div></div>`;group.append(d)});return group});
   adminGallery.replaceChildren(intro,...groups);
