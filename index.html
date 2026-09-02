@@ -10,11 +10,6 @@
 
     <title>Janelle Gardner Portfolio</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css"
-    />
-
     <link rel="stylesheet" href="styles.css" />
 
     <script src="script.js" type="module"></script>
@@ -28,44 +23,119 @@
           <span>Janelle Gardner</span>
         </a>
         <div class="topbar__meta">
-          <span>Marketing portfolio</span>
-          <a href="#portfolio-grid">Explore work <span aria-hidden="true">↓</span></a>
+          <span>Professional Portfolio</span>
+          <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#administrative-operations">Administrative &amp; Operations</a>
+            <a href="#video">Video</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+          </div>
         </div>
       </nav>
 
       <div class="hero" id="top">
         <div class="hero__content">
-          <p class="eyebrow">Strategy · Analytics · Design</p>
+          <p class="eyebrow">Strategy · Analytics · Operations · Creative</p>
           <h1>Ideas built to<br /><em>make an impact.</em></h1>
           <p class="intro">
-            A curated presentation of marketing strategy, research, analytics, and design work by Janelle Gardner.
+            A curated collection of strategy, research, analytics, operations, design, and creative work by Janelle Gardner.
           </p>
           <a class="hero__cta" href="#portfolio-grid">
             View selected work <span aria-hidden="true">↘</span>
           </a>
+          <div class="hero__socials" aria-label="Social profiles">
+            <a href="https://www.linkedin.com/in/jgardnerdesign" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="https://www.instagram.com/jkgcollection_1" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
         <div class="hero__visual" aria-hidden="true">
-          <span class="hero__number">01</span>
-          <p>Selected<br />portfolio<br />2026</p>
+          <div class="hero__monogram">JG</div>
+          <p>Perspective.<br />Precision.<br />Impact.</p>
         </div>
       </div>
     </header>
 
     <main id="main-content">
-      <section class="work-section" aria-labelledby="work-heading">
+      <section class="work-section reveal" id="work" aria-labelledby="work-heading">
         <div class="section-heading">
-          <p class="eyebrow">Selected work</p>
           <h2 id="work-heading">The project deck</h2>
-          <p>Choose a story to open the full presentation.</p>
         </div>
         <div class="portfolio-grid" id="portfolio-grid" aria-label="Portfolio project grid"></div>
+      </section>
+
+      <section class="experience-section reveal" id="experience" aria-labelledby="experience-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Career &amp; learning</p>
+          <h2 id="experience-heading">Experience &amp; Credentials</h2>
+          <p>A focused view of professional experience, education, and continued development.</p>
+        </div>
+
+        <div class="experience-accordion" data-accordion>
+          <section class="accordion-item">
+            <h3><button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="professional-panel" id="professional-trigger"><span><small>01</small>Professional Experience</span><i aria-hidden="true"></i></button></h3>
+            <div class="accordion-panel" id="professional-panel" role="region" aria-labelledby="professional-trigger" hidden><div class="accordion-panel__inner"><div class="timeline">
+              <article class="timeline-card reveal-card">
+                <p class="timeline-card__date">Jun 2023 – Present</p>
+                <h4>Marketing Associate / Social Media Management</h4>
+                <p>ReNVision, LLC</p>
+                <ul class="capability-tags"><li>Social Media</li><li>Audience Research</li><li>Content</li></ul>
+              </article>
+              <article class="timeline-card reveal-card">
+                <p class="timeline-card__date">Sep 2020 – Jun 2025</p>
+                <h4>General Merchandise Supervisor</h4>
+                <p>Barnes &amp; Noble College Booksellers — Howard University</p>
+                <ul class="capability-tags"><li>Operations</li><li>Customer Experience</li><li>Team Leadership</li></ul>
+              </article>
+              <article class="timeline-card reveal-card">
+                <p class="timeline-card__date">Jan 2020 – Mar 2020</p>
+                <h4>Bookseller</h4>
+                <p>Barnes &amp; Noble College Booksellers — Georgetown University</p>
+                <ul class="capability-tags"><li>Customer Service</li><li>Transactions</li><li>Retail Operations</li></ul>
+              </article>
+            </div></div></div>
+          </section>
+
+          <section class="accordion-item">
+            <h3><button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="education-panel" id="education-trigger"><span><small>02</small>Education</span><i aria-hidden="true"></i></button></h3>
+            <div class="accordion-panel" id="education-panel" role="region" aria-labelledby="education-trigger" hidden><div class="accordion-panel__inner"><div class="education-grid">
+              <article class="education-card education-card--featured reveal-card">
+                <p class="credential-type">Bachelor's degree</p>
+                <h4>Bachelor of Science in Marketing</h4>
+                <p>University of Maryland Global Campus (UMGC)</p>
+                <strong>May 2026</strong>
+              </article>
+              <article class="education-card reveal-card"><p class="credential-type">Certificate</p><h4>Digital Marketing Certificate</h4><p>University of Maryland Global Campus (UMGC)</p></article>
+              <article class="education-card reveal-card"><p class="credential-type">Certificate</p><h4>Project Management Certificate</h4><p>University of Maryland Global Campus (UMGC)</p></article>
+            </div></div></div>
+          </section>
+
+          <section class="accordion-item">
+            <h3><button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="certificates-panel" id="certificates-trigger"><span><small>03</small>Relevant Certificates</span><i aria-hidden="true"></i></button></h3>
+            <div class="accordion-panel" id="certificates-panel" role="region" aria-labelledby="certificates-trigger" hidden><div class="accordion-panel__inner"><div class="development-list">
+              <article class="development-card reveal-card"><h4>Omnichannel Marketing Job Simulation</h4><time datetime="2025-09">Sep 2025</time></article>
+              <article class="development-card reveal-card"><h4>Siemens Mobility Project Manager Job Simulation</h4><time datetime="2025-12">Dec 2025</time></article>
+              <article class="development-card reveal-card"><h4>BCG Data for Decision Makers Job Simulation</h4><time datetime="2026-01">Jan 2026</time></article>
+            </div></div></div>
+          </section>
+
+          <section class="accordion-item" id="contact">
+            <h3><button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="contact-panel" id="contact-trigger"><span><small>04</small>Contact</span><i aria-hidden="true"></i></button></h3>
+            <div class="accordion-panel" id="contact-panel" role="region" aria-labelledby="contact-trigger" hidden><div class="accordion-panel__inner contact-panel-content">
+              <div class="contact-intro"><p class="eyebrow">Contact</p><h4>Start a conversation</h4><p>Interested in connecting about strategy, operations, analytics, or creative work?</p></div>
+              <nav class="contact-links" aria-label="Contact links">
+                <a href="mailto:j.kgardner@outlook.com"><span>Email</span><strong>j.kgardner@outlook.com</strong><i aria-hidden="true">↗</i></a>
+                <a href="https://www.linkedin.com/in/jgardnerdesign" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><strong>jgardnerdesign</strong><i aria-hidden="true">↗</i></a>
+                <a href="https://www.instagram.com/jkgcollection_1" target="_blank" rel="noopener noreferrer"><span>Instagram</span><strong>@JKGCOLLECTION_1</strong><i aria-hidden="true">↗</i></a>
+              </nav>
+            </div></div>
+          </section>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Let’s make the next idea matter.</p>
-      <a href="mailto:j.kgardner@outlook.com">Start a conversation <span aria-hidden="true">↗</span></a>
-      <span>© 2026 Janelle Gardner</span>
+      <span class="copyright">© 2026 Janelle Gardner</span>
     </footer>
 
     <section
@@ -104,16 +174,8 @@
         </button>
 
         <div class="project-detail">
-          <section
-            class="pdf-pages"
-            id="pdf-pages"
-            aria-label="Rendered PDF pages"
-          ></section>
-
-          <aside
-            class="project-info"
-            aria-labelledby="focused-project-title"
-          >
+          <section class="native-project" id="native-project" aria-live="polite"></section>
+          <aside class="project-info" aria-labelledby="focused-project-title">
             <p
               class="focused-project__category"
               id="focused-project-category"
@@ -123,17 +185,8 @@
               Project title
             </h2>
 
-            <div
-              class="project-description"
-              id="project-description"
-              hidden
-            ></div>
-
-            <div
-              class="project-tools"
-              id="project-tools"
-              hidden
-            ></div>
+            <p class="project-info__summary" id="focused-project-summary"></p>
+            <div class="project-info__links" id="focused-project-links"></div>
           </aside>
         </div>
       </div>
