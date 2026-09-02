@@ -15,7 +15,9 @@ const projects = [
     type: "case-study",
     theme: { accent: "#284A86", soft: "#E8EEF8", dark: "#172E59" },
     summary: "A go-to-market strategy exploring Pantene’s expansion into preventative scalp health through competitive research, product development, and an integrated launch strategy.",
-    views: [{ label: "Strategy Overview", image: "assets/go_to_marketing_strategy.png", alt: "P&G Scalp Vitality go-to-market strategy overview.", link: { label: "View Full Project", url: "https://jnkgdr-arch.github.io/PanteneSubline/" } }],
+    image: "assets/go_to_marketing_strategy.png",
+    alt: "P&G Scalp Vitality go-to-market strategy overview.",
+    links: [{ label: "Pantene Scalp Vitality", url: "https://jnkgdr-arch.github.io/PanteneSubline/" }],
   },
   {
     name: "Chipotle Global Expansion",
@@ -23,7 +25,9 @@ const projects = [
     type: "case-study",
     theme: { accent: "#A51E22", soft: "#F7E8E7", dark: "#641316" },
     summary: "Consumer and cultural research supporting a localized market-entry and go-to-market recommendation for China.",
-    views: [{ label: "China Market Entry Strategy", image: "assets/global_marketing_chipotle.png", alt: "Chipotle China market-entry strategy overview.", link: { label: "View Full Project", url: "https://chipotle-global-expansion.vercel.app/" } }],
+    image: "assets/global_marketing_chipotle.png",
+    alt: "Chipotle China market-entry strategy overview.",
+    links: [{ label: "Chipotle Global Expansion", url: "https://chipotle-global-expansion.vercel.app/" }],
   },
   {
     name: "Google Analytics: Google Merch Store",
@@ -31,16 +35,18 @@ const projects = [
     type: "case-study",
     theme: { accent: "#13566E", soft: "#E6F0F3", dark: "#083746" },
     summary: "An e-commerce and audience analysis translating user behavior, acquisition, product performance, and engagement data into marketing recommendations.",
-    views: [{ label: "GA4 Performance Dashboard", image: "assets/google_analytics4.png", alt: "Google Merch Store analytics dashboard." }],
+    image: "assets/google_analytics4.png",
+    alt: "Google Merch Store analytics dashboard.",
   },
   {
-    name: "Global Tech Innovations Case Study",
-    category: "Project Management · AI-Driven Project Management",
+    name: "Project Management & IFSM",
+    category: "PM and IFSM",
     type: "case-study",
     theme: { accent: "#175B91", soft: "#E7F0F7", dark: "#0C385C" },
-    summary: "An executive analysis of an enterprise AI project-management rollout examining data quality, adoption, governance, reporting, and implementation stabilization.",
-    views: [{ label: "AI Project Management Case Study", image: "assets/global_tech_project-management.png", alt: "Global Tech AI project-management case-study overview.", link: { label: "View Full Project", url: "https://tech-company-case-study.vercel.app/" } }],
-    linksHeading: "Related Projects",
+    summary: "Selected project management and IFSM projects applying hybrid methodologies, work breakdown structures (WBS), and Microsoft Project to support project planning, scheduling, and execution.",
+    image: "assets/global_tech_project-management.png",
+    alt: "Global Tech AI project-management case-study overview.",
+    linksHeading: "Projects",
     links: [
       { label: "HealthConnect Risk Mitigation", url: "https://health-connect-risk-mitigation.vercel.app/" },
       { label: "EZ-ATS Applicant Tracking Recommendation", url: "https://business-analysis-system-recommenda.vercel.app/" },
@@ -54,12 +60,14 @@ const projects = [
     type: "case-study",
     theme: { accent: "#695635", soft: "#F2EEE6", dark: "#40331F" },
     summary: "Selected survey and economic research translating complex evidence into practical recommendations.",
-    views: [
-      { label: "ABC Restaurant Survey", image: "assets/research_and_insights.png", alt: "Restaurant survey and world-development research dashboards.", link: { label: "View Full Project", url: "https://jnkgdr-arch.github.io/RestaurantSurveyAnalytics/" } },
-      { label: "World Development Indicators", image: "assets/research_and_insights.png", alt: "Restaurant survey and world-development research dashboards.", link: { label: "View Full Project", url: "https://world-development-indicators-psi.vercel.app/" } },
+    image: "assets/research_and_insights.png",
+    alt: "Restaurant survey and world-development research dashboards.",
+    linksHeading: "Projects",
+    links: [
+      { label: "Restaurant Survey Analytics", url: "https://jnkgdr-arch.github.io/RestaurantSurveyAnalytics/" },
+      { label: "World Development Indicators", url: "https://world-development-indicators-psi.vercel.app/" },
+      { label: "Unemployment and the Economy", url: "https://unemployment-and-the-economy.vercel.app/" },
     ],
-    linksHeading: "Related Economic Analysis",
-    links: [{ label: "Unemployment and the Economy", url: "https://unemployment-and-the-economy.vercel.app/" }],
   },
   {
     name: "SEO & Keyword Search",
@@ -67,7 +75,9 @@ const projects = [
     type: "case-study",
     theme: { accent: "#283665", soft: "#EAECF4", dark: "#18213F" },
     summary: "A Coleman SEO intelligence analysis translating keyword demand, competition, search intent, and customer feedback into paid, organic, and display recommendations.",
-    views: [{ label: "Coleman SEO Intelligence", image: "assets/seo_and_keywords.png", alt: "Coleman SEO keyword strategy dashboard.", link: { label: "View Full Project", url: "https://seo-tailoringand-consumer-interest.vercel.app/" } }],
+    image: "assets/seo_and_keywords.png",
+    alt: "Coleman SEO keyword strategy dashboard.",
+    links: [{ label: "SEO Tailoring & Consumer Interest", url: "https://seo-tailoringand-consumer-interest.vercel.app/" }],
   },
   {
     name: "Designs & Logos",
@@ -75,25 +85,14 @@ const projects = [
     type: "case-study",
     theme: { accent: "#8C6639", soft: "#F3EEE7", dark: "#50391F" },
     summary: "Selected visual design work spanning Canva projects, Adobe Photoshop compositions, and branding/logo development.",
-    views: [
-      { label: "Canva Designs", image: "assets/designs_and_logo.png", alt: "Selected Canva, Photoshop, and logo design work." },
-      { label: "Adobe Photoshop", image: "assets/designs_and_logo.png", alt: "Selected Canva, Photoshop, and logo design work." },
-      { label: "Logo Designs", image: "assets/designs_and_logo.png", alt: "Selected Canva, Photoshop, and logo design work." },
-    ],
+    image: "assets/designs_and_logo.png",
+    alt: "Selected Canva, Photoshop, and logo design work.",
     linksHeading: "Related Creative Projects",
     links: [
       { label: "Ford Mustang Dark Horse", url: "https://ford-dark-horse-mustang.vercel.app/" },
       { label: "Dyson Social Media Marketing", url: "https://dyson-social-media-marketing.vercel.app/" },
       { label: "Pantene Scalp Vitality", url: "https://jnkgdr-arch.github.io/PanteneSubline/" },
     ],
-    linksHeading: "Related Creative Projects",
-    links: [
-      { label: "Ford Mustang Dark Horse", url: "https://ford-dark-horse-mustang.vercel.app/" },
-      { label: "Dyson Social Media Marketing", url: "https://dyson-social-media-marketing.vercel.app/" },
-      { label: "Pantene Scalp Vitality", url: "https://jnkgdr-arch.github.io/PanteneSubline/" },
-    ],
-    capabilities: ["SEO", "Keyword Research", "Consumer Interest", "Content Strategy"],
-    links: [{ label: "View SEO Tailoring & Consumer Interest", url: "https://seo-tailoringand-consumer-interest.vercel.app/" }],
   },
   {
     name: "Administrative & Operations",
@@ -107,7 +106,8 @@ const projects = [
     category: "Creative Work",
     type: "video",
     theme: { accent: "#5363A5", soft: "#ECEEF7", dark: "#303B70" },
-    summary: "Selected short-form product and social concepts created with Canva and CapCut.",
+    summary: "Selected motion and visual storytelling projects created with Canva, CapCut, and Adobe Photoshop, spanning product concepts, social content, and layered parallax design.",
+    capabilities: ["Canva", "CapCut", "Adobe Photoshop"],
   },
 ];
 
@@ -129,6 +129,12 @@ const videos = [
     description: "A playful visual concept created to capture the fun and energy of making content for social media. Designed in Canva and animated in CapCut.",
     url: "https://drive.google.com/file/d/1NYjQexju3ZZaT8-EH9OvuNSNRkjlyEFL/view?usp=sharing",
     tools: ["Canva", "CapCut"],
+  },
+  {
+    title: "Parallax Video Project — CMST Course",
+    description: "A parallax video project created in Adobe Photoshop for a CMST course. Inspired by a religious film centered on an individual’s struggles with faith, the piece uses layered visual composition and motion to explore that theme.",
+    url: "https://drive.google.com/file/d/1MYjKgvpz6eQi9xQZHSe4Jpc9OVTiJPbQ/view?usp=sharing",
+    tools: ["Adobe Photoshop"],
   },
 ];
 
@@ -201,16 +207,16 @@ function createProjectImage(view) {
   return image;
 }
 
-function appendRelatedLinks(article, project) {
+function renderProjectLinks(project) {
   if (!project.links?.length) return;
   const links = document.createElement("section");
   links.className = "project-links";
-  links.innerHTML = `<p class="eyebrow">${project.linksHeading || "Related Projects"}</p>`;
+  links.innerHTML = `<p class="eyebrow">${project.linksHeading || "Project"}</p>`;
   const list = document.createElement("div");
   list.className = "project-links__list";
   project.links.forEach(item => list.append(createExternalLink(item)));
   links.append(list);
-  article.append(links);
+  focusedLinks.append(links);
 }
 
 function renderProfileProject(project) {
@@ -237,42 +243,10 @@ function renderCaseStudy(project) {
 
   const article = document.createElement("article");
   article.className = "case-study visual-case-study";
-  const navigation = document.createElement("nav");
-  navigation.className = "visual-navigation";
-  navigation.setAttribute("aria-label", `${project.name} visual navigation`);
   const viewer = document.createElement("figure");
   viewer.className = "project-visual";
-  viewer.setAttribute("aria-live", "polite");
-  function selectView(view, button) {
-    navigation.querySelectorAll("button").forEach(item => {
-      const selected = item === button;
-      item.classList.toggle("is-active", selected);
-      item.setAttribute("aria-pressed", String(selected));
-    });
-    viewer.classList.add("is-changing");
-    window.setTimeout(() => {
-      viewer.replaceChildren(createProjectImage(view));
-      viewer.classList.remove("is-changing");
-    }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 140);
-    focusedLinks.replaceChildren();
-    if (view.link) focusedLinks.append(createExternalLink(view.link, "external-link external-link--primary"));
-  }
-
-  project.views.forEach((view, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.textContent = view.label;
-    button.setAttribute("aria-pressed", "false");
-    button.addEventListener("click", () => selectView(view, button));
-    navigation.append(button);
-    if (index === 0) selectView(view, button);
-  });
-
-  const frame = document.createElement("div");
-  frame.className = "visual-case-study__frame";
-  frame.append(navigation, viewer);
-  article.append(frame);
-  appendRelatedLinks(article, project);
+  viewer.append(createProjectImage(project));
+  article.append(viewer);
   nativeProject.replaceChildren(article);
 }
 
@@ -347,7 +321,7 @@ function renderVideos() {
   });
   const note = document.createElement("p");
   note.className = "video-audio-note";
-  note.textContent = "Audio and sound effects sourced from Canva’s free media library.";
+  note.textContent = "Audio and sound effects used in the Canva-based projects were sourced from Canva’s free media library.";
   wrapper.append(list, note);
   nativeProject.replaceChildren(wrapper);
 }
@@ -366,6 +340,13 @@ function openProject(project) {
   if (project.type === "administrative") renderAdministrative();
   else if (project.type === "video") renderVideos();
   else renderCaseStudy(project);
+  if (project.type === "case-study") renderProjectLinks(project);
+  if (project.capabilities?.length) {
+    const tags = document.createElement("ul");
+    tags.className = "capability-list";
+    tags.innerHTML = project.capabilities.map(item => `<li>${item}</li>`).join("");
+    focusedLinks.append(tags);
+  }
   dialog.hidden = false;
   document.body.classList.add("is-focused");
   requestAnimationFrame(() => {
@@ -407,6 +388,14 @@ function initializeAccordion() {
       panel.hidden = false;
       requestAnimationFrame(() => panel.classList.add("is-open"));
     }
+  }));
+}
+
+function initializeContactNavigation() {
+  document.querySelectorAll("[data-contact-link]").forEach(link => link.addEventListener("click", () => {
+    const trigger = document.querySelector("#contact-trigger");
+    if (trigger.getAttribute("aria-expanded") !== "true") trigger.click();
+    window.setTimeout(() => trigger.focus({ preventScroll: true }), 0);
   }));
 }
 
@@ -455,6 +444,7 @@ function initializePortfolio() {
   try {
     renderProjects();
     initializeAccordion();
+    initializeContactNavigation();
     initializeReveal();
   } catch (error) {
     console.error("Portfolio initialization failed.", error);
