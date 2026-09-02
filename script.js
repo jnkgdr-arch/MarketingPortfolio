@@ -86,6 +86,14 @@ const projects = [
       { label: "Dyson Social Media Marketing", url: "https://dyson-social-media-marketing.vercel.app/" },
       { label: "Pantene Scalp Vitality", url: "https://jnkgdr-arch.github.io/PanteneSubline/" },
     ],
+    linksHeading: "Related Creative Projects",
+    links: [
+      { label: "Ford Mustang Dark Horse", url: "https://ford-dark-horse-mustang.vercel.app/" },
+      { label: "Dyson Social Media Marketing", url: "https://dyson-social-media-marketing.vercel.app/" },
+      { label: "Pantene Scalp Vitality", url: "https://jnkgdr-arch.github.io/PanteneSubline/" },
+    ],
+    capabilities: ["SEO", "Keyword Research", "Consumer Interest", "Content Strategy"],
+    links: [{ label: "View SEO Tailoring & Consumer Interest", url: "https://seo-tailoringand-consumer-interest.vercel.app/" }],
   },
   {
     name: "Administrative & Operations",
