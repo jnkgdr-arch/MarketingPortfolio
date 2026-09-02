@@ -37,6 +37,7 @@ const projects = [
     summary: "An e-commerce and audience analysis translating user behavior, acquisition, product performance, and engagement data into marketing recommendations.",
     image: "assets/google_analytics4.png",
     alt: "Google Merch Store analytics dashboard.",
+    links: [{ label: "Google Merchandise Store GA4 Analysis", url: "https://google-merch-store-g4-analysis.vercel.app/" }],
   },
   {
     name: "Project Management & IFSM",
@@ -87,12 +88,6 @@ const projects = [
     summary: "Selected visual design work spanning Canva projects, Adobe Photoshop compositions, and branding/logo development.",
     image: "assets/designs_and_logo.png",
     alt: "Selected Canva, Photoshop, and logo design work.",
-    linksHeading: "Related Creative Projects",
-    links: [
-      { label: "Ford Mustang Dark Horse", url: "https://ford-dark-horse-mustang.vercel.app/" },
-      { label: "Dyson Social Media Marketing", url: "https://dyson-social-media-marketing.vercel.app/" },
-      { label: "Pantene Scalp Vitality", url: "https://jnkgdr-arch.github.io/PanteneSubline/" },
-    ],
   },
   {
     name: "Administrative & Operations",
