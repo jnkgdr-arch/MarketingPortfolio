@@ -4,43 +4,42 @@ const projects = [
     category: "Introduction",
     type: "case-study",
     layout: "profile",
-    thumbnail: "assets/thumbnails/about.svg",
+    theme: { accent: "#9A6848", soft: "#F3ECE7", dark: "#603F2D" },
     summary: "A concise introduction to Janelle Gardner’s multidisciplinary professional portfolio.",
     image: "assets/portfolio_pic.png",
-    fallbackImage: "assets/thumbnails/about.svg",
     alt: "Portrait of Janelle Gardner.",
   },
   {
     name: "P&G Scalp Vitality Initiative",
     category: "Brand Strategy · Expanding Pantene into Preventative Scalp Health",
     type: "case-study",
-    thumbnail: "assets/thumbnails/pantene.svg",
+    theme: { accent: "#284A86", soft: "#E8EEF8", dark: "#172E59" },
     summary: "A go-to-market strategy exploring Pantene’s expansion into preventative scalp health through competitive research, product development, and an integrated launch strategy.",
-    views: [{ label: "Strategy Overview", image: "assets/go_to_marketing_strategy.png", fallbackImage: "assets/thumbnails/pantene.svg", alt: "P&G Scalp Vitality go-to-market strategy overview.", link: { label: "View Full Project", url: "https://jnkgdr-arch.github.io/PanteneSubline/" } }],
+    views: [{ label: "Strategy Overview", image: "assets/go_to_marketing_strategy.png", alt: "P&G Scalp Vitality go-to-market strategy overview.", link: { label: "View Full Project", url: "https://jnkgdr-arch.github.io/PanteneSubline/" } }],
   },
   {
     name: "Chipotle Global Expansion",
     category: "Global Marketing · Market Entry Strategy for China",
     type: "case-study",
-    thumbnail: "assets/thumbnails/chipotle.svg",
+    theme: { accent: "#A51E22", soft: "#F7E8E7", dark: "#641316" },
     summary: "Consumer and cultural research supporting a localized market-entry and go-to-market recommendation for China.",
-    views: [{ label: "China Market Entry Strategy", image: "assets/global_marketing_chipotle.png", fallbackImage: "assets/thumbnails/chipotle.svg", alt: "Chipotle China market-entry strategy overview.", link: { label: "View Full Project", url: "https://chipotle-global-expansion.vercel.app/" } }],
+    views: [{ label: "China Market Entry Strategy", image: "assets/global_marketing_chipotle.png", alt: "Chipotle China market-entry strategy overview.", link: { label: "View Full Project", url: "https://chipotle-global-expansion.vercel.app/" } }],
   },
   {
     name: "Google Analytics: Google Merch Store",
     category: "Analytics",
     type: "case-study",
-    thumbnail: "assets/thumbnails/analytics.svg",
+    theme: { accent: "#13566E", soft: "#E6F0F3", dark: "#083746" },
     summary: "An e-commerce and audience analysis translating user behavior, acquisition, product performance, and engagement data into marketing recommendations.",
-    views: [{ label: "GA4 Performance Dashboard", image: "assets/google_analytics4.png", fallbackImage: "assets/thumbnails/analytics.svg", alt: "Google Merch Store analytics dashboard." }],
+    views: [{ label: "GA4 Performance Dashboard", image: "assets/google_analytics4.png", alt: "Google Merch Store analytics dashboard." }],
   },
   {
     name: "Global Tech Innovations Case Study",
     category: "Project Management · AI-Driven Project Management",
     type: "case-study",
-    thumbnail: "assets/thumbnails/project-management.svg",
+    theme: { accent: "#175B91", soft: "#E7F0F7", dark: "#0C385C" },
     summary: "An executive analysis of an enterprise AI project-management rollout examining data quality, adoption, governance, reporting, and implementation stabilization.",
-    views: [{ label: "AI Project Management Case Study", image: "assets/global_tech_project-management.png", fallbackImage: "assets/thumbnails/project-management.svg", alt: "Global Tech AI project-management case-study overview.", link: { label: "View Full Project", url: "https://tech-company-case-study.vercel.app/" } }],
+    views: [{ label: "AI Project Management Case Study", image: "assets/global_tech_project-management.png", alt: "Global Tech AI project-management case-study overview.", link: { label: "View Full Project", url: "https://tech-company-case-study.vercel.app/" } }],
     linksHeading: "Related Projects",
     links: [
       { label: "HealthConnect Risk Mitigation", url: "https://health-connect-risk-mitigation.vercel.app/" },
@@ -53,11 +52,11 @@ const projects = [
     name: "Research & Insights",
     category: "Research",
     type: "case-study",
-    thumbnail: "assets/thumbnails/research.svg",
+    theme: { accent: "#695635", soft: "#F2EEE6", dark: "#40331F" },
     summary: "Selected survey and economic research translating complex evidence into practical recommendations.",
     views: [
-      { label: "ABC Restaurant Survey", image: "assets/research_and_insights.png", fallbackImage: "assets/thumbnails/research.svg", alt: "Restaurant survey and world-development research dashboards.", link: { label: "View Full Project", url: "https://jnkgdr-arch.github.io/RestaurantSurveyAnalytics/" } },
-      { label: "World Development Indicators", image: "assets/research_and_insights.png", fallbackImage: "assets/thumbnails/research.svg", alt: "Restaurant survey and world-development research dashboards.", link: { label: "View Full Project", url: "https://world-development-indicators-psi.vercel.app/" } },
+      { label: "ABC Restaurant Survey", image: "assets/research_and_insights.png", alt: "Restaurant survey and world-development research dashboards.", link: { label: "View Full Project", url: "https://jnkgdr-arch.github.io/RestaurantSurveyAnalytics/" } },
+      { label: "World Development Indicators", image: "assets/research_and_insights.png", alt: "Restaurant survey and world-development research dashboards.", link: { label: "View Full Project", url: "https://world-development-indicators-psi.vercel.app/" } },
     ],
     linksHeading: "Related Economic Analysis",
     links: [{ label: "Unemployment and the Economy", url: "https://unemployment-and-the-economy.vercel.app/" }],
@@ -66,20 +65,26 @@ const projects = [
     name: "SEO & Keyword Search",
     category: "SEO",
     type: "case-study",
-    thumbnail: "assets/thumbnails/seo.svg",
+    theme: { accent: "#283665", soft: "#EAECF4", dark: "#18213F" },
     summary: "A Coleman SEO intelligence analysis translating keyword demand, competition, search intent, and customer feedback into paid, organic, and display recommendations.",
-    views: [{ label: "Coleman SEO Intelligence", image: "assets/seo_and_keywords.png", fallbackImage: "assets/thumbnails/seo.svg", alt: "Coleman SEO keyword strategy dashboard.", link: { label: "View Full Project", url: "https://seo-tailoringand-consumer-interest.vercel.app/" } }],
+    views: [{ label: "Coleman SEO Intelligence", image: "assets/seo_and_keywords.png", alt: "Coleman SEO keyword strategy dashboard.", link: { label: "View Full Project", url: "https://seo-tailoringand-consumer-interest.vercel.app/" } }],
   },
   {
     name: "Designs & Logos",
     category: "Creative Design",
     type: "case-study",
-    thumbnail: "assets/thumbnails/design.svg",
+    theme: { accent: "#8C6639", soft: "#F3EEE7", dark: "#50391F" },
     summary: "Selected visual design work spanning Canva projects, Adobe Photoshop compositions, and branding/logo development.",
     views: [
-      { label: "Canva Designs", image: "assets/designs_and_logo.png", fallbackImage: "assets/thumbnails/design.svg", alt: "Selected Canva, Photoshop, and logo design work." },
-      { label: "Adobe Photoshop", image: "assets/designs_and_logo.png", fallbackImage: "assets/thumbnails/design.svg", alt: "Selected Canva, Photoshop, and logo design work." },
-      { label: "Logo Designs", image: "assets/designs_and_logo.png", fallbackImage: "assets/thumbnails/design.svg", alt: "Selected Canva, Photoshop, and logo design work." },
+      { label: "Canva Designs", image: "assets/designs_and_logo.png", alt: "Selected Canva, Photoshop, and logo design work." },
+      { label: "Adobe Photoshop", image: "assets/designs_and_logo.png", alt: "Selected Canva, Photoshop, and logo design work." },
+      { label: "Logo Designs", image: "assets/designs_and_logo.png", alt: "Selected Canva, Photoshop, and logo design work." },
+    ],
+    linksHeading: "Related Creative Projects",
+    links: [
+      { label: "Ford Mustang Dark Horse", url: "https://ford-dark-horse-mustang.vercel.app/" },
+      { label: "Dyson Social Media Marketing", url: "https://dyson-social-media-marketing.vercel.app/" },
+      { label: "Pantene Scalp Vitality", url: "https://jnkgdr-arch.github.io/PanteneSubline/" },
     ],
     linksHeading: "Related Creative Projects",
     links: [
@@ -94,14 +99,14 @@ const projects = [
     name: "Administrative & Operations",
     category: "Work Samples",
     type: "administrative",
-    thumbnail: "assets/thumbnails/operations.svg",
+    theme: { accent: "#4F6F91", soft: "#EBF0F5", dark: "#29445F" },
     summary: "Interactive, recreated work samples spanning planning, communication, reporting, and documentation.",
   },
   {
     name: "Motion & Video",
     category: "Creative Work",
     type: "video",
-    thumbnail: "assets/thumbnails/motion.svg",
+    theme: { accent: "#5363A5", soft: "#ECEEF7", dark: "#303B70" },
     summary: "Selected short-form product and social concepts created with Canva and CapCut.",
   },
 ];
@@ -145,6 +150,7 @@ const nativeProject = document.querySelector("#native-project");
 const focusedTitle = document.querySelector("#focused-project-title");
 const focusedCategory = document.querySelector("#focused-project-category");
 const focusedSummary = document.querySelector("#focused-project-summary");
+const focusedLinks = document.querySelector("#focused-project-links");
 const backButton = document.querySelector("#back-button");
 let previousFocus = null;
 let previousScrollY = 0;
@@ -169,19 +175,10 @@ function renderProjects() {
     if (project.type === "video") card.id = "video";
     card.setAttribute("aria-label", `Open ${project.name}`);
 
-    const preview = document.createElement("div");
-    preview.className = "project-card__preview";
-    const image = document.createElement("img");
-    image.src = project.thumbnail;
-    image.alt = `${project.name} project preview`;
-    image.loading = index > 3 ? "lazy" : "eager";
-    image.decoding = "async";
-    preview.append(image);
-
     const body = document.createElement("div");
     body.className = "project-card__body";
     body.innerHTML = `<span class="project-card__number">${String(index + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}</span><p class="project-card__category">${project.category}</p><h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span>`;
-    card.append(preview, body);
+    card.append(body);
     card.addEventListener("click", () => openProject(project));
     return card;
   }));
@@ -195,10 +192,11 @@ function createProjectImage(view) {
   image.loading = "lazy";
   image.decoding = "async";
   image.addEventListener("error", () => {
-    if (image.dataset.fallbackApplied) return;
-    image.dataset.fallbackApplied = "true";
-    image.src = view.fallbackImage;
-    image.closest(".project-visual")?.classList.add("has-fallback");
+    const message = document.createElement("p");
+    message.className = "project-visual__error";
+    message.setAttribute("role", "status");
+    message.textContent = "Project visual unavailable.";
+    image.closest(".project-visual")?.replaceChildren(message);
   });
   return image;
 }
@@ -245,9 +243,6 @@ function renderCaseStudy(project) {
   const viewer = document.createElement("figure");
   viewer.className = "project-visual";
   viewer.setAttribute("aria-live", "polite");
-  const primaryLink = document.createElement("div");
-  primaryLink.className = "selected-project-link";
-
   function selectView(view, button) {
     navigation.querySelectorAll("button").forEach(item => {
       const selected = item === button;
@@ -256,12 +251,11 @@ function renderCaseStudy(project) {
     });
     viewer.classList.add("is-changing");
     window.setTimeout(() => {
-      viewer.classList.remove("has-fallback");
       viewer.replaceChildren(createProjectImage(view));
       viewer.classList.remove("is-changing");
     }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 140);
-    primaryLink.replaceChildren();
-    if (view.link) primaryLink.append(createExternalLink(view.link, "external-link external-link--primary"));
+    focusedLinks.replaceChildren();
+    if (view.link) focusedLinks.append(createExternalLink(view.link, "external-link external-link--primary"));
   }
 
   project.views.forEach((view, index) => {
@@ -277,7 +271,7 @@ function renderCaseStudy(project) {
   const frame = document.createElement("div");
   frame.className = "visual-case-study__frame";
   frame.append(navigation, viewer);
-  article.append(frame, primaryLink);
+  article.append(frame);
   appendRelatedLinks(article, project);
   nativeProject.replaceChildren(article);
 }
@@ -365,6 +359,10 @@ function openProject(project) {
   focusedTitle.textContent = project.name;
   focusedCategory.textContent = project.category;
   focusedSummary.textContent = project.summary;
+  focusedLinks.replaceChildren();
+  dialog.style.setProperty("--project-accent", project.theme.accent);
+  dialog.style.setProperty("--project-accent-soft", project.theme.soft);
+  dialog.style.setProperty("--project-accent-dark", project.theme.dark);
   if (project.type === "administrative") renderAdministrative();
   else if (project.type === "video") renderVideos();
   else renderCaseStudy(project);
@@ -382,6 +380,10 @@ function closeProject() {
   closeTimer = window.setTimeout(() => {
     dialog.hidden = true;
     nativeProject.replaceChildren();
+    focusedLinks.replaceChildren();
+    dialog.style.removeProperty("--project-accent");
+    dialog.style.removeProperty("--project-accent-soft");
+    dialog.style.removeProperty("--project-accent-dark");
     window.scrollTo({ top: previousScrollY, behavior: "auto" });
     if (previousFocus instanceof HTMLElement) previousFocus.focus();
   }, 280);
