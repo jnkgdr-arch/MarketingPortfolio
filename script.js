@@ -16,6 +16,7 @@ const projects = [
     theme: { accent: "#284A86", soft: "#E8EEF8", dark: "#172E59" },
     summary: "A go-to-market strategy exploring Pantene’s expansion into preventative scalp health through competitive research, product development, and an integrated launch strategy.",
     image: "assets/go_to_marketing_strategy.png",
+    thumbnail: "assets/thumbnails/scalp_vitality_initative.png",
     alt: "P&G Scalp Vitality go-to-market strategy overview.",
     links: [{ label: "Pantene Scalp Vitality", url: "https://jnkgdr-arch.github.io/PanteneSubline/" }],
   },
@@ -26,6 +27,7 @@ const projects = [
     theme: { accent: "#A51E22", soft: "#F7E8E7", dark: "#641316" },
     summary: "Consumer and cultural research supporting a localized market-entry and go-to-market recommendation for China.",
     image: "assets/global_marketing_chipotle.png",
+    thumbnail: "assets/thumbnails/chipotle_global_market.png",
     alt: "Chipotle China market-entry strategy overview.",
     links: [{ label: "Chipotle Global Expansion", url: "https://chipotle-global-expansion.vercel.app/" }],
   },
@@ -36,6 +38,7 @@ const projects = [
     theme: { accent: "#13566E", soft: "#E6F0F3", dark: "#083746" },
     summary: "An e-commerce and audience analysis translating user behavior, acquisition, product performance, and engagement data into marketing recommendations.",
     image: "assets/google_analytics4.png",
+    thumbnail: "assets/thumbnails/google_analytics.png",
     alt: "Google Merch Store analytics dashboard.",
     links: [{ label: "Google Merchandise Store GA4 Analysis", url: "https://google-merch-store-g4-analysis.vercel.app/" }],
   },
@@ -46,6 +49,7 @@ const projects = [
     theme: { accent: "#175B91", soft: "#E7F0F7", dark: "#0C385C" },
     summary: "Selected project management and IFSM projects applying hybrid methodologies, work breakdown structures (WBS), and Microsoft Project to support project planning, scheduling, and execution.",
     image: "assets/global_tech_project-management.png",
+    thumbnail: "assets/thumbnails/project_management_thumbnail.png",
     alt: "Global Tech AI project-management case-study overview.",
     linksHeading: "Projects",
     links: [
@@ -62,6 +66,7 @@ const projects = [
     theme: { accent: "#695635", soft: "#F2EEE6", dark: "#40331F" },
     summary: "Selected survey and economic research translating complex evidence into practical recommendations.",
     image: "assets/research_and_insights.png",
+    thumbnail: "assets/thumbnails/research_insights.png",
     alt: "Restaurant survey and world-development research dashboards.",
     linksHeading: "Projects",
     links: [
@@ -77,6 +82,7 @@ const projects = [
     theme: { accent: "#283665", soft: "#EAECF4", dark: "#18213F" },
     summary: "A Coleman SEO intelligence analysis translating keyword demand, competition, search intent, and customer feedback into paid, organic, and display recommendations.",
     image: "assets/seo_and_keywords.png",
+    thumbnail: "assets/thumbnails/seo_keywords.png",
     alt: "Coleman SEO keyword strategy dashboard.",
     links: [{ label: "SEO Tailoring & Consumer Interest", url: "https://seo-tailoringand-consumer-interest.vercel.app/" }],
   },
@@ -87,6 +93,7 @@ const projects = [
     theme: { accent: "#8C6639", soft: "#F3EEE7", dark: "#50391F" },
     summary: "Selected visual design work spanning Canva projects, Adobe Photoshop compositions, and branding/logo development.",
     image: "assets/designs_and_logo.png",
+    thumbnail: "assets/thumbnails/designs_logos.png",
     alt: "Selected Canva, Photoshop, and logo design work.",
   },
   {
@@ -131,6 +138,12 @@ const videos = [
     url: "https://drive.google.com/file/d/1MYjKgvpz6eQi9xQZHSe4Jpc9OVTiJPbQ/view?usp=sharing",
     tools: ["Adobe Photoshop"],
   },
+  {
+    title: "Peach Breeze — Perfume Commercial Concept",
+    description: "A perfume concept inspired by relaxation, nostalgia, and peaceful summer days at the beach. I created the Peach Breeze brand and visual design in Canva, using a soft peach-inspired scent concept to evoke the feeling of summertime by the ocean. I used Canva’s free video library for the commercial footage and CapCut to add animation and video effects.",
+    url: "https://drive.google.com/file/d/19mBlK-yjSnr2mGlVL7sBgNuDezvSx3d1/view?usp=sharing",
+    tools: ["Canva", "CapCut"],
+  },
 ];
 
 const adminSamples = [
@@ -168,18 +181,33 @@ function createExternalLink({ label, url }, className = "external-link") {
 }
 
 function renderProjects() {
-  grid.replaceChildren(...projects.map((project, index) => {
+  grid.replaceChildren(...projects.map(project => {
     const card = document.createElement("button");
     card.type = "button";
-    card.className = "project-card";
+    card.className = `project-card ${project.thumbnail ? "project-card--image" : "project-card--text"}`;
     if (project.type === "administrative") card.id = "administrative-operations";
     if (project.type === "video") card.id = "video";
     card.setAttribute("aria-label", `Open ${project.name}`);
 
-    const body = document.createElement("div");
-    body.className = "project-card__body";
-    body.innerHTML = `<span class="project-card__number">${String(index + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}</span><p class="project-card__category">${project.category}</p><h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span>`;
-    card.append(body);
+    const content = document.createElement("div");
+    content.className = project.thumbnail ? "project-card__content" : "project-card__body";
+    content.innerHTML = project.thumbnail
+      ? `<span class="project-card__link">Open project <span aria-hidden="true">↗</span></span><h2>${project.name}</h2><p class="project-card__category">${project.category}</p>`
+      : `<p class="project-card__category">${project.category}</p><h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span>`;
+    if (project.thumbnail) {
+      const thumbnail = document.createElement("img");
+      thumbnail.className = "project-card__thumbnail";
+      thumbnail.src = project.thumbnail;
+      thumbnail.alt = `${project.name} project thumbnail`;
+      thumbnail.loading = "lazy";
+      thumbnail.decoding = "async";
+      const shade = document.createElement("div");
+      shade.className = "project-card__shade";
+      shade.setAttribute("aria-hidden", "true");
+      card.append(thumbnail, shade, content);
+    } else {
+      card.append(content);
+    }
     card.addEventListener("click", () => openProject(project));
     return card;
   }));
@@ -316,7 +344,7 @@ function renderVideos() {
   });
   const note = document.createElement("p");
   note.className = "video-audio-note";
-  note.textContent = "Audio and sound effects used in the Canva-based projects were sourced from Canva’s free media library.";
+  note.textContent = "Audio, sound effects, and stock video used in Canva-based projects were sourced from Canva’s free media library where applicable.";
   wrapper.append(list, note);
   nativeProject.replaceChildren(wrapper);
 }
@@ -409,7 +437,7 @@ function initializeReveal() {
     }), { threshold: .08 });
     document.documentElement.classList.add("reveal-ready");
     targets.forEach((item, index) => {
-      if (item.classList.contains("project-card") || item.classList.contains("reveal-card")) item.style.transitionDelay = `${Math.min(index % 5, 4) * 45}ms`;
+      if (item.classList.contains("project-card") || item.classList.contains("reveal-card")) item.style.transitionDelay = `${Math.min(index % 5, 4) * 60}ms`;
       observer.observe(item);
     });
 
