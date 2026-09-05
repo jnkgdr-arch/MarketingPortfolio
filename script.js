@@ -181,7 +181,7 @@ function createExternalLink({ label, url }, className = "external-link") {
 }
 
 function renderProjects() {
-  grid.replaceChildren(...projects.map((project, index) => {
+  grid.replaceChildren(...projects.map(project => {
     const card = document.createElement("button");
     card.type = "button";
     card.className = `project-card ${project.thumbnail ? "project-card--image" : "project-card--text"}`;
@@ -191,7 +191,9 @@ function renderProjects() {
 
     const content = document.createElement("div");
     content.className = project.thumbnail ? "project-card__content" : "project-card__body";
-    content.innerHTML = `<span class="project-card__number">${String(index + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}</span><p class="project-card__category">${project.category}</p><h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span>`;
+    content.innerHTML = project.thumbnail
+      ? `<h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span><p class="project-card__category">${project.category}</p>`
+      : `<p class="project-card__category">${project.category}</p><h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span>`;
     if (project.thumbnail) {
       const thumbnail = document.createElement("img");
       thumbnail.className = "project-card__thumbnail";
