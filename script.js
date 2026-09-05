@@ -192,7 +192,7 @@ function renderProjects() {
     const content = document.createElement("div");
     content.className = project.thumbnail ? "project-card__content" : "project-card__body";
     content.innerHTML = project.thumbnail
-      ? `<h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span><p class="project-card__category">${project.category}</p>`
+      ? `<span class="project-card__link">Open project <span aria-hidden="true">↗</span></span><h2>${project.name}</h2><p class="project-card__category">${project.category}</p>`
       : `<p class="project-card__category">${project.category}</p><h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span>`;
     if (project.thumbnail) {
       const thumbnail = document.createElement("img");
