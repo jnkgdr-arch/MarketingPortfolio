@@ -141,7 +141,7 @@ const videos = [
   {
     title: "Peach Breeze — Perfume Commercial Concept",
     description: "A perfume concept inspired by relaxation, nostalgia, and peaceful summer days at the beach. I created the Peach Breeze brand and visual design in Canva, using a soft peach-inspired scent concept to evoke the feeling of summertime by the ocean. I used Canva’s free video library for the commercial footage and CapCut to add animation and video effects.",
-    url: "https://drive.google.com/file/d/19mBlK-yjSnr2mGlVL7sBgNuDezvSx3d1/view?usp=sharing",
+    url: "https://1drv.ms/v/c/f3ac351bcb533845/IQDAXiGdpmgNRJHZf8BBZG5yAcIp1Ftiehc6TQEt3N5hGWA?e=OG9crh",
     tools: ["Canva", "CapCut"],
   },
 ];
