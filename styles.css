@@ -65,6 +65,7 @@ button { font: inherit; }
 .project-card:hover, .project-card:focus-visible { border-color: #8aa9d2; box-shadow: var(--shadow); outline: none; transform: translateY(-5px); }
 .project-card--image { aspect-ratio: 1 / 1; min-height: 0; border-top-width: 1px; background: var(--navy-2); isolation: isolate; }
 .project-card__thumbnail { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+video.project-card__thumbnail { object-fit: cover; pointer-events: none; }
 .project-card__shade { position: absolute; inset: auto 0 0; z-index: -1; height: 32%; pointer-events: none; background: linear-gradient(to top,rgba(3,12,27,.9) 0%,rgba(3,12,27,.5) 55%,rgba(3,12,27,0) 100%); transition: height 350ms ease, background 350ms ease; }
 .project-card__content { display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; height: 100%; padding: clamp(14px,1.45vw,22px); color: white; text-shadow: 0 2px 12px rgba(0,0,0,.65); transform: translateY(8px); transition: transform 350ms ease; }
 .project-card--image:hover .project-card__shade, .project-card--image:focus-visible .project-card__shade { height: 58%; background: linear-gradient(to top,rgba(3,12,27,.94) 0%,rgba(3,12,27,.58) 55%,rgba(3,12,27,0) 100%); }
@@ -230,7 +231,9 @@ button { font: inherit; }
 .video-index { color: var(--blue); font-size: .7rem; font-weight: 700; }
 .video-project-item h4 { margin: 28px 0 10px; font-size: 1.4rem; }
 .video-project-item p { color: var(--muted); }
-.video-project-item .external-link { align-self: flex-start; margin-top: auto; }
+.video-project-media { min-width: 0; margin: 0; }
+.video-project-player { display: block; width: 100%; max-width: 100%; height: auto; max-height: 320px; border-radius: 8px; background: var(--navy); object-fit: contain; }
+.video-project-media figcaption { margin-top: 12px; color: var(--muted); font-size: .92rem; line-height: 1.55; }
 .video-audio-note { margin: 0; color: #b9cada; font-size: .72rem; font-style: italic; text-align: right; }
 body.is-focused { overflow: hidden; }
 
