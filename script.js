@@ -7,6 +7,7 @@ const projects = [
     theme: { accent: "#9A6848", soft: "#F3ECE7", dark: "#603F2D" },
     summary: "A concise introduction to Janelle Gardner’s multidisciplinary professional portfolio.",
     image: "assets/portfolio_pic.png",
+    thumbnail: "assets/about_me_thumbnail.png",
     alt: "Portrait of Janelle Gardner.",
   },
   {
@@ -102,6 +103,7 @@ const projects = [
     type: "administrative",
     theme: { accent: "#4F6F91", soft: "#EBF0F5", dark: "#29445F" },
     summary: "Interactive, recreated work samples spanning planning, communication, reporting, and documentation.",
+    thumbnail: "assets/admin_operations_thumbnail.png",
   },
   {
     name: "Motion & Video",
