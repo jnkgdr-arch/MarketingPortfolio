@@ -7,6 +7,7 @@ const projects = [
     theme: { accent: "#9A6848", soft: "#F3ECE7", dark: "#603F2D" },
     summary: "A concise introduction to Janelle Gardner’s multidisciplinary professional portfolio.",
     image: "assets/portfolio_pic.png",
+    thumbnail: "assets/about_me_thumbnail.png",
     alt: "Portrait of Janelle Gardner.",
   },
   {
@@ -102,6 +103,7 @@ const projects = [
     type: "administrative",
     theme: { accent: "#4F6F91", soft: "#EBF0F5", dark: "#29445F" },
     summary: "Interactive, recreated work samples spanning planning, communication, reporting, and documentation.",
+    thumbnail: "assets/admin_operations_thumbnail.png",
   },
   {
     name: "Motion & Video",
@@ -109,6 +111,7 @@ const projects = [
     type: "video",
     theme: { accent: "#5363A5", soft: "#ECEEF7", dark: "#303B70" },
     summary: "Selected motion and visual storytelling projects created with Canva, CapCut, and Adobe Photoshop, spanning product concepts, social content, and layered parallax design.",
+    thumbnailVideo: "assets/thumbnails/motion_vid_thumbnail.mp4",
     capabilities: ["Canva", "CapCut", "Adobe Photoshop"],
   },
 ];
@@ -117,32 +120,44 @@ const videos = [
   {
     title: "Jungle Bag — Sustainable Fashion Concept",
     description: "A nature-inspired fashion concept blending sustainable materials with an organic visual aesthetic. Designed in Canva with opening animation created in CapCut.",
-    url: "https://drive.google.com/file/d/1O-HaNkbEj0GRf9MDsPDyAQXWvN2MecpD/view?usp=sharing",
+    src: "assets/videos/jungle_leaf_purse.mp4",
     tools: ["Canva", "CapCut"],
   },
   {
     title: "Azure Utility Purse — Sustainable Fashion Concept",
     description: "A fashion-forward utility purse combining sustainable material, a snakeskin-inspired finish, and expanded storage for style-conscious users. Designed in Canva with video animation created in CapCut.",
-    url: "https://drive.google.com/file/d/1wivwIvqlKHSBUwMm9qkOwoeMTCpUnRQd/view?usp=sharing",
+    src: "assets/videos/azure_utility_purse.mp4",
     tools: ["Canva", "CapCut"],
   },
   {
     title: "Overjoyed — Social Content Design",
     description: "A playful visual concept created to capture the fun and energy of making content for social media. Designed in Canva and animated in CapCut.",
-    url: "https://drive.google.com/file/d/1NYjQexju3ZZaT8-EH9OvuNSNRkjlyEFL/view?usp=sharing",
+    src: "assets/videos/overjoyed_energized_feeling.mp4",
     tools: ["Canva", "CapCut"],
   },
   {
     title: "Parallax Video Project — CMST Course",
     description: "A parallax video project created in Adobe Photoshop for a CMST course. Inspired by a religious film centered on an individual’s struggles with faith, the piece uses layered visual composition and motion to explore that theme.",
-    url: "https://drive.google.com/file/d/1MYjKgvpz6eQi9xQZHSe4Jpc9OVTiJPbQ/view?usp=sharing",
+    src: "assets/videos/parallax_cmst_cathedral.mp4",
     tools: ["Adobe Photoshop"],
   },
   {
     title: "Peach Breeze — Perfume Commercial Concept",
     description: "A perfume concept inspired by relaxation, nostalgia, and peaceful summer days at the beach. I created the Peach Breeze brand and visual design in Canva, using a soft peach-inspired scent concept to evoke the feeling of summertime by the ocean. I used Canva’s free video library for the commercial footage and CapCut to add animation and video effects.",
-    url: "https://1drv.ms/v/c/f3ac351bcb533845/IQDAXiGdpmgNRJHZf8BBZG5yAcIp1Ftiehc6TQEt3N5hGWA?e=OG9crh",
+    src: "assets/videos/peach_breeze_promo_ad.mp4",
     tools: ["Canva", "CapCut"],
+  },
+  {
+    title: "Fig Watch",
+    description: "A polished promotional concept presenting Fig as a featured watch brand through product-focused visual storytelling, Canva design, and CapCut effects.",
+    src: "assets/videos/fig_watch_fin.mp4",
+    tools: ["Promotional Concept", "Brand Presentation", "Canva", "CapCut"],
+  },
+  {
+    title: "Diamond Bite",
+    description: "An experimental motion study exploring fluidity through layered image manipulation, Healing Brush reconstruction, Burn and Dodge enhancement, and timeline animation.",
+    src: "assets/videos/diamond_bite_fin.mp4",
+    tools: ["Adobe Photoshop", "Healing Brush", "Burn & Dodge", "CapCut"],
   },
 ];
 
@@ -182,25 +197,36 @@ function createExternalLink({ label, url }, className = "external-link") {
 
 function renderProjects() {
   grid.replaceChildren(...projects.map(project => {
+    const hasThumbnail = Boolean(project.thumbnail || project.thumbnailVideo);
     const card = document.createElement("button");
     card.type = "button";
-    card.className = `project-card ${project.thumbnail ? "project-card--image" : "project-card--text"}`;
+    card.className = `project-card ${hasThumbnail ? "project-card--image" : "project-card--text"}`;
     if (project.type === "administrative") card.id = "administrative-operations";
     if (project.type === "video") card.id = "video";
     card.setAttribute("aria-label", `Open ${project.name}`);
 
     const content = document.createElement("div");
-    content.className = project.thumbnail ? "project-card__content" : "project-card__body";
-    content.innerHTML = project.thumbnail
+    content.className = hasThumbnail ? "project-card__content" : "project-card__body";
+    content.innerHTML = hasThumbnail
       ? `<span class="project-card__link">Open project <span aria-hidden="true">↗</span></span><h2>${project.name}</h2><p class="project-card__category">${project.category}</p>`
       : `<p class="project-card__category">${project.category}</p><h2>${project.name}</h2><span class="project-card__link">Open project <span aria-hidden="true">↗</span></span>`;
-    if (project.thumbnail) {
-      const thumbnail = document.createElement("img");
+    if (hasThumbnail) {
+      const thumbnail = document.createElement(project.thumbnailVideo ? "video" : "img");
       thumbnail.className = "project-card__thumbnail";
-      thumbnail.src = project.thumbnail;
-      thumbnail.alt = `${project.name} project thumbnail`;
-      thumbnail.loading = "lazy";
-      thumbnail.decoding = "async";
+      thumbnail.src = project.thumbnailVideo || project.thumbnail;
+      if (project.thumbnailVideo) {
+        thumbnail.autoplay = true;
+        thumbnail.muted = true;
+        thumbnail.defaultMuted = true;
+        thumbnail.loop = true;
+        thumbnail.playsInline = true;
+        thumbnail.preload = "metadata";
+        thumbnail.setAttribute("aria-hidden", "true");
+      } else {
+        thumbnail.alt = `${project.name} project thumbnail`;
+        thumbnail.loading = "lazy";
+        thumbnail.decoding = "async";
+      }
       const shade = document.createElement("div");
       shade.className = "project-card__shade";
       shade.setAttribute("aria-hidden", "true");
@@ -338,8 +364,23 @@ function renderVideos() {
   videos.forEach(video => {
     const item = document.createElement("article");
     item.className = "video-project-item";
-    item.innerHTML = `<span class="video-index">${String(list.children.length + 1).padStart(2,"0")}</span><h4>${video.title}</h4><p>${video.description}</p><ul class="capability-list">${video.tools.map(tool=>`<li>${tool}</li>`).join("")}</ul>`;
-    item.append(createExternalLink({ label: "Watch Video", url: video.url }));
+    item.innerHTML = `<span class="video-index">${String(list.children.length + 1).padStart(2,"0")}</span><h4>${video.title}</h4>`;
+    const media = document.createElement("figure");
+    media.className = "video-project-media";
+    const player = document.createElement("video");
+    player.className = "video-project-player";
+    player.src = video.src;
+    player.controls = true;
+    player.preload = "metadata";
+    player.playsInline = true;
+    player.setAttribute("aria-label", `${video.title} video`);
+    const caption = document.createElement("figcaption");
+    caption.textContent = video.description;
+    media.append(player, caption);
+    const capabilities = document.createElement("ul");
+    capabilities.className = "capability-list";
+    capabilities.innerHTML = video.tools.map(tool => `<li>${tool}</li>`).join("");
+    item.append(media, capabilities);
     list.append(item);
   });
   const note = document.createElement("p");
