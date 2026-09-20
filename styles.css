@@ -26,7 +26,7 @@ a { color: inherit; }
 button { font: inherit; }
 .eyebrow, .project-card__category, .focused-project__category { margin: 0; color: var(--blue); font-size: .7rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
 
-.site-header { min-height: 100svh; padding: 0 clamp(24px, 4vw, 64px) 48px; background: var(--navy); color: white; }
+.site-header { padding: 0 clamp(24px, 4vw, 64px) 40px; background: var(--navy); color: white; }
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: 30px; min-height: 96px; border-bottom: 1px solid rgba(255,255,255,.16); font-size: .69rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .homepage-brand { display: flex; align-items: center; gap: 12px; flex: none; text-decoration: none; }
 .site-corner-logo, .focused-brand__logo { width: 42px; height: 42px; object-fit: contain; clip-path: circle(41.2% at 50% 51%); }
@@ -37,8 +37,8 @@ button { font: inherit; }
 .nav-links a::after { content: ""; position: absolute; right: 0; bottom: -6px; left: 0; height: 1px; background: #77a6ff; transform: scaleX(0); transform-origin: right; transition: transform var(--transition); }
 .nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 
-.hero { display: grid; grid-template-columns: minmax(0, 1.48fr) minmax(290px, .52fr); min-height: calc(100svh - 144px); }
-.hero__content { align-self: center; padding: 72px 4vw 72px 0; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.48fr) minmax(290px, .52fr); min-height: clamp(560px, 72svh, 700px); }
+.hero__content { align-self: center; padding: 56px 4vw 56px 0; }
 .hero .eyebrow { color: #8eb5ff; }
 .hero h1 { margin: 22px 0 28px; max-width: 940px; font-size: clamp(3.7rem, 8.6vw, 8.8rem); font-weight: 500; line-height: .85; letter-spacing: -.075em; }
 .hero h1 em { color: #94b9ff; font-family: Georgia, serif; font-weight: 400; }
@@ -48,12 +48,8 @@ button { font: inherit; }
 .hero__socials { display: flex; gap: 22px; margin-top: 24px; }
 .hero__socials a { padding-bottom: 3px; border-bottom: 1px solid rgba(143,180,247,.48); color: #bed3fb; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
 .hero__socials a:hover { border-color: white; color: white; }
-.hero__visual { position: relative; display: flex; align-items: flex-end; margin: 48px 0 0; padding: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.15); background: var(--navy-2); }
-.hero__visual::before, .hero__visual::after { content: ""; position: absolute; border: 1px solid rgba(151,190,255,.35); border-radius: 50%; }
-.hero__visual::before { right: -210px; bottom: -115px; width: 420px; aspect-ratio: 1; }
-.hero__visual::after { top: 22%; right: -40px; width: 250px; aspect-ratio: 1; }
-.hero__monogram { position: absolute; top: 28%; right: 7%; color: rgba(255,255,255,.055); font-size: clamp(9rem,18vw,19rem); font-weight: 700; line-height: 1; }
-.hero__visual p { position: relative; z-index: 1; margin: 0; color: #c6d9ff; font-family: Manrope, sans-serif; font-size: clamp(1.8rem,3vw,3.5rem); font-weight: 500; line-height: 1; letter-spacing: -.05em; }
+.hero__visual { display: flex; align-items: flex-end; padding: 56px 28px; }
+.hero__visual p { margin: 0; color: #c6d9ff; font-family: Manrope, sans-serif; font-size: clamp(1.8rem,3vw,3.5rem); font-weight: 500; line-height: 1; letter-spacing: -.05em; }
 
 .work-section, .experience-section { width: 100%; padding: clamp(72px,9vw,132px) clamp(12px,2vw,32px); }
 .section-heading { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 30px; align-items: end; max-width: 1500px; margin: 0 auto 60px; }
@@ -65,6 +61,7 @@ button { font: inherit; }
 .project-card:hover, .project-card:focus-visible { border-color: #8aa9d2; box-shadow: var(--shadow); outline: none; transform: translateY(-5px); }
 .project-card--image { aspect-ratio: 1 / 1; min-height: 0; border-top-width: 1px; background: var(--navy-2); isolation: isolate; }
 .project-card__thumbnail { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+video.project-card__thumbnail { object-fit: cover; pointer-events: none; }
 .project-card__shade { position: absolute; inset: auto 0 0; z-index: -1; height: 32%; pointer-events: none; background: linear-gradient(to top,rgba(3,12,27,.9) 0%,rgba(3,12,27,.5) 55%,rgba(3,12,27,0) 100%); transition: height 350ms ease, background 350ms ease; }
 .project-card__content { display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; height: 100%; padding: clamp(14px,1.45vw,22px); color: white; text-shadow: 0 2px 12px rgba(0,0,0,.65); transform: translateY(8px); transition: transform 350ms ease; }
 .project-card--image:hover .project-card__shade, .project-card--image:focus-visible .project-card__shade { height: 58%; background: linear-gradient(to top,rgba(3,12,27,.94) 0%,rgba(3,12,27,.58) 55%,rgba(3,12,27,0) 100%); }
@@ -230,7 +227,9 @@ button { font: inherit; }
 .video-index { color: var(--blue); font-size: .7rem; font-weight: 700; }
 .video-project-item h4 { margin: 28px 0 10px; font-size: 1.4rem; }
 .video-project-item p { color: var(--muted); }
-.video-project-item .external-link { align-self: flex-start; margin-top: auto; }
+.video-project-media { min-width: 0; margin: 0; }
+.video-project-player { display: block; width: 100%; max-width: 100%; height: auto; max-height: 320px; border-radius: 8px; background: var(--navy); object-fit: contain; }
+.video-project-media figcaption { margin-top: 12px; color: var(--muted); font-size: .92rem; line-height: 1.55; }
 .video-audio-note { margin: 0; color: #b9cada; font-size: .72rem; font-style: italic; text-align: right; }
 body.is-focused { overflow: hidden; }
 
@@ -261,9 +260,10 @@ body.is-focused { overflow: hidden; }
   .nav-links { width: max-content; }
   .homepage-brand span { display: none; }
   .hero { grid-template-columns: 1fr; }
-  .hero__content { padding: 70px 0 56px; }
+  .hero { min-height: auto; }
+  .hero__content { padding: 56px 0 40px; }
   .hero h1 { font-size: clamp(3.5rem,17vw,5.7rem); }
-  .hero__visual { min-height: 330px; margin: 0; }
+  .hero__visual { min-height: 0; padding: 0 0 44px; }
   .focused-brand { top: 16px; left: 16px; }
   .back-button { top: 64px; right: 14px; left: 14px; }
   .focused-project__panel { padding: 125px 12px 24px; }
