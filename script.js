@@ -450,35 +450,52 @@ function renderAdministrative() {
     return button;
   }
 
-  const groups = [...adminSampleGroups, { title: "Card Design Concepts", samples: cardDesigns }];
-  groups.forEach(group => {
-    const isDesigns = group.samples === cardDesigns;
+  function sampleAccordion(title, caption, action = "View sample") {
+    const details = document.createElement("details");
+    details.className = "sample-card";
+    details.innerHTML = `<summary><div><h5>${title}</h5><p>${caption}</p></div><span>${action}</span></summary>`;
+    return details;
+  }
+
+  adminSampleGroups.forEach(group => {
     const section = document.createElement("section");
     section.className = "sample-group";
     section.innerHTML = `<h4 class="sample-group__heading">${group.title}</h4>`;
     const list = document.createElement("div");
-    list.className = isDesigns ? "card-design-grid" : "admin-sample-list";
+    list.className = "admin-sample-list";
     group.samples.forEach(sample => {
-      const card = document.createElement(isDesigns ? "article" : "details");
-      card.className = "sample-card";
-      const text = `<h5>${sample.title}</h5><p>${sample.caption}</p>`;
-      const images = sample.images.map(image => imageButton(image, sample.title));
-      if (isDesigns) {
-        card.classList.add("card-design");
-        card.innerHTML = `<div class="card-design__caption">${text}</div>`;
-        card.prepend(...images);
-      } else {
-        card.innerHTML = `<summary><div>${text}</div><span>View sample</span></summary>`;
-        const content = document.createElement("div");
-        content.className = "sample-content";
-        content.append(...images);
-        card.append(content);
-      }
-      list.append(card);
+      const details = sampleAccordion(sample.title, sample.caption);
+      const content = document.createElement("div");
+      content.className = "sample-content";
+      content.append(...sample.images.map(image => imageButton(image, sample.title)));
+      details.append(content);
+      list.append(details);
     });
     section.append(list);
     wrapper.append(section);
   });
+
+  const designSection = document.createElement("section");
+  designSection.className = "sample-group";
+  designSection.innerHTML = '<h4 class="sample-group__heading">Card Design Concepts</h4>';
+  const designAccordion = sampleAccordion(
+    "Additional Card Design Concepts for Credit Unions",
+    "These concepts can be adapted to reflect each credit union’s brand, local character, and the community it serves.",
+    "View designs",
+  );
+  designAccordion.classList.add("card-design-accordion");
+  const designGrid = document.createElement("div");
+  designGrid.className = "sample-content card-design-grid";
+  cardDesigns.forEach(design => {
+    const card = document.createElement("article");
+    card.className = "sample-card card-design";
+    card.innerHTML = `<div class="card-design__caption"><h6>${design.title}</h6><p>${design.caption}</p></div>`;
+    card.prepend(...design.images.map(image => imageButton(image, design.title)));
+    designGrid.append(card);
+  });
+  designAccordion.append(designGrid);
+  designSection.append(designAccordion);
+  wrapper.append(designSection);
 
   wrapper.append(preview);
   nativeProject.replaceChildren(wrapper);

@@ -177,8 +177,19 @@ video.project-card__thumbnail { object-fit: cover; pointer-events: none; }
 .admin-sample-list, .sample-content, .card-design-grid { display: grid; gap: 14px; }
 .sample-content { padding: 0 20px 20px; }
 .card-design-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); }
+@supports (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    .card-design-accordion::details-content {
+      block-size: 0;
+      overflow: clip;
+      interpolate-size: allow-keywords;
+      transition: block-size var(--transition), content-visibility var(--transition) allow-discrete;
+    }
+    .card-design-accordion[open]::details-content { block-size: auto; }
+  }
+}
 .card-design__caption { padding: 16px 18px 20px; }
-.card-design__caption h5 { margin: 0; font-size: 1.2rem; }
+.card-design__caption h6 { margin: 0; font-size: 1.2rem; }
 .card-design__caption p { margin: 6px 0 0; color: var(--muted); }
 .admin-image {
   display: block;
