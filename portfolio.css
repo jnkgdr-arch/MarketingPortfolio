@@ -71,7 +71,6 @@ body{margin:0}
 #jg-editorial [aria-labelledby="jg-fcu"] .art-pair img,
 #jg-editorial [aria-labelledby="jg-logos"] .logo-board img { background:#e9e3d8; }
 #jg-editorial .purpose { margin:0 0 22px; max-width:70ch; }
-#jg-editorial #jg-about + .purpose { margin-bottom:0; }
 #jg-editorial .lead h3 { font:500 clamp(32px,6.5vw,72px)/.99 Georgia,serif; letter-spacing:-.055em; }
 #jg-editorial .school-list,#jg-editorial .course-film { margin-top:24px; }
 #jg-editorial .school-list img { max-height:620px; object-fit:contain; object-position:left center; margin-bottom:18px; }
@@ -175,3 +174,16 @@ body{margin:0}
 #jg-editorial .credentials article :is(time,.timeline-card__date,.credential-type) { color:var(--secondary); }
 #jg-editorial .capability-tags { margin:6px 0 0; padding-left:1.25em; }
 #jg-editorial .inner-page .contact-links { margin-top:24px; }
+
+#jg-editorial .about-layout {
+  display:grid;
+  grid-template-columns:minmax(0,70ch) minmax(0,360px);
+  align-items:start;
+  gap:clamp(24px,5vw,64px);
+}
+#jg-editorial .about-layout .purpose { margin:0; }
+#jg-editorial .about-layout img { height:auto; }
+@media (max-width:700px) {
+  #jg-editorial .about-layout { grid-template-columns:1fr; }
+  #jg-editorial .about-layout img { max-width:360px; }
+}
